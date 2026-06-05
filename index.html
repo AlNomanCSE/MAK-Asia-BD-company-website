@@ -508,173 +508,185 @@
   </div>
 </section>
 
-<!-- ════════════════════════════ PRODUCTS (cream) ════════════════════════════ -->
-<section id="products" class="s-cream py-24">
+<!-- ════════════════════════════ PRODUCTS (black bg) ════════════════════════════ -->
+<section id="products" style="background:var(--black);padding:6rem 0">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="text-center mb-12 reveal">
-      <div class="badge badge-dark">Product Range</div>
-      <h2 class="font-bold mb-3" style="font-size:2.8rem;font-family:'Playfair Display',serif;color:var(--black)">Our Products</h2>
-      <div class="gold-line dark center"></div>
-      <p style="color:rgba(0,0,0,.55);max-width:520px;margin-left:auto;margin-right:auto">
-        From everyday knitwear to premium outerwear — all major apparel categories with uncompromising quality.
+    <!-- Header -->
+    <div class="text-center mb-16 reveal">
+      <div class="badge">Product Range</div>
+      <h2 class="font-bold text-white mb-3" style="font-size:2.8rem;font-family:'Playfair Display',serif">Our Products</h2>
+      <div class="gold-line center"></div>
+      <p style="color:rgba(255,255,255,.45);max-width:520px;margin-left:auto;margin-right:auto">
+        From everyday knitwear to premium outerwear — all major apparel categories sourced with uncompromising quality.
       </p>
     </div>
 
-    <!-- Product category icon chips — image10,11,12,13,14 with proper visibility fixes -->
-    <div class="reveal grid grid-cols-5 gap-3 mb-10 max-w-lg mx-auto">
-      <!-- image10.png: avg_brightness=128, mixed — show on cream bg -->
-      <div class="prod-icon-chip">
-        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
-          <img src="assets/image10.png" alt="Knitwear icon" style="width:44px;height:44px;object-fit:contain" />
-        </div>
-        <span>Knit</span>
-      </div>
-      <!-- image11.png: avg_brightness=213 (light) — show normally -->
-      <div class="prod-icon-chip">
-        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
-          <img src="assets/image11.png" alt="Woven icon" style="width:44px;height:44px;object-fit:contain" />
-        </div>
-        <span>Woven</span>
-      </div>
-      <!-- image14.png: dark pixels (29800 dark) — invert to white then golden -->
-      <div class="prod-icon-chip">
-        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
-          <img src="assets/image14.png" alt="Outerwear icon" style="width:44px;height:44px;object-fit:contain" />
-        </div>
-        <span>Outer</span>
-      </div>
-      <!-- image12.png: avg_brightness=121, mixed — white bg -->
-      <div class="prod-icon-chip">
-        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
-          <img src="assets/image12.png" alt="Sweater icon" style="width:44px;height:44px;object-fit:contain" />
-        </div>
-        <span>Sweater</span>
-      </div>
-      <!-- image13.png: avg_brightness=72 (very dark) — golden filter -->
-      <div class="prod-icon-chip">
-        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
-          <img src="assets/image13.png" alt="All products" style="width:44px;height:44px;object-fit:contain" />
-        </div>
-        <span>More</span>
-      </div>
-    </div>
+    <!-- ── BENTO GRID: 2 large + 2 medium cards ── -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:420px 320px;gap:16px">
 
-    <!-- Tabs -->
-    <div class="reveal flex flex-wrap justify-center gap-3 mb-10">
-      <button class="tab-btn active" data-tab="knitwear">🧶 Knitwear</button>
-      <button class="tab-btn" data-tab="woven">👔 Woven Garments</button>
-      <button class="tab-btn" data-tab="outerwear">🧥 Outerwear</button>
-      <button class="tab-btn" data-tab="sweaters">🧣 Sweaters</button>
-    </div>
-
-    <!-- Tab: Knitwear — image8.jpeg -->
-    <div id="tab-knitwear" class="tab-panel active reveal">
-      <div class="grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl" style="background:var(--black);border:1px solid rgba(250,165,65,.2)">
-        <div class="h-80 md:h-auto overflow-hidden">
-          <img src="assets/image8.jpeg" alt="Knitwear Products" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+      <!-- CARD 1: Knitwear — image8.jpeg (large left) -->
+      <div class="prod-card" style="grid-column:1;grid-row:1;position:relative;overflow:hidden;border-radius:1.5rem;cursor:pointer"
+           onmouseenter="this.querySelector('.prod-info').style.transform='translateY(0)'"
+           onmouseleave="this.querySelector('.prod-info').style.transform='translateY(60%)'">
+        <img src="assets/image8.jpeg" alt="Knitwear"
+             style="width:100%;height:100%;object-fit:cover;transition:transform .7s;display:block" class="prod-bg-img" />
+        <!-- icon chip top-left -->
+        <div style="position:absolute;top:1rem;left:1rem;background:#fff;border-radius:10px;padding:6px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.3)">
+          <img src="assets/image10.png" alt="" style="width:34px;height:34px;object-fit:contain" />
         </div>
-        <div class="p-8 md:p-10">
-          <h3 class="font-bold text-white text-3xl mb-2" style="font-family:'Playfair Display',serif">Knitwear</h3>
-          <div class="gold-line"></div>
-          <p style="color:rgba(255,255,255,.55)" class="mb-6">Premium knitwear crafted for comfort and style, suitable for every season and market segment.</p>
-          <div>
-            <div class="prod-li">T-Shirts &amp; Tank Tops</div>
-            <div class="prod-li">Polo Shirts</div>
-            <div class="prod-li">Leggings</div>
-            <div class="prod-li">Hoodies &amp; Jackets</div>
-            <div class="prod-li">All Kinds of Knitwear</div>
+        <!-- number badge -->
+        <div style="position:absolute;top:1rem;right:1rem;background:rgba(250,165,65,.9);color:#000;font-weight:800;font-size:.75rem;padding:.3rem .7rem;border-radius:999px;letter-spacing:.1em">01</div>
+        <!-- overlay info panel -->
+        <div class="prod-info" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.97) 0%,rgba(0,0,0,.8) 60%,transparent 100%);padding:2rem;transform:translateY(60%);transition:transform .45s cubic-bezier(.4,0,.2,1)">
+          <div style="color:var(--golden);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem">Category 01</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:.6rem">Knitwear</h3>
+          <div style="width:40px;height:2px;background:var(--golden);margin-bottom:.8rem"></div>
+          <div style="color:rgba(255,255,255,.65);font-size:.85rem;line-height:1.7">
+            T-Shirts · Tank Tops · Polo Shirts<br/>Leggings · Hoodies · All Knitwear
           </div>
         </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 50%);pointer-events:none"></div>
+        <!-- always-visible title at bottom -->
+        <div style="position:absolute;bottom:1.2rem;left:1.5rem;pointer-events:none" class="prod-static-title">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff">Knitwear</h3>
+          <span style="color:var(--golden);font-size:.72rem;font-weight:600;letter-spacing:.1em">HOVER TO EXPLORE →</span>
+        </div>
+      </div>
+
+      <!-- CARD 2: Woven — image9.jpeg (large right) -->
+      <div class="prod-card" style="grid-column:2;grid-row:1;position:relative;overflow:hidden;border-radius:1.5rem;cursor:pointer"
+           onmouseenter="this.querySelector('.prod-info').style.transform='translateY(0)'"
+           onmouseleave="this.querySelector('.prod-info').style.transform='translateY(60%)'">
+        <img src="assets/image9.jpeg" alt="Woven Garments"
+             style="width:100%;height:100%;object-fit:cover;transition:transform .7s;display:block" class="prod-bg-img" />
+        <div style="position:absolute;top:1rem;left:1rem;background:#fff;border-radius:10px;padding:6px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.3)">
+          <img src="assets/image11.png" alt="" style="width:34px;height:34px;object-fit:contain" />
+        </div>
+        <div style="position:absolute;top:1rem;right:1rem;background:rgba(250,165,65,.9);color:#000;font-weight:800;font-size:.75rem;padding:.3rem .7rem;border-radius:999px;letter-spacing:.1em">02</div>
+        <div class="prod-info" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.97) 0%,rgba(0,0,0,.8) 60%,transparent 100%);padding:2rem;transform:translateY(60%);transition:transform .45s cubic-bezier(.4,0,.2,1)">
+          <div style="color:var(--golden);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem">Category 02</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:.6rem">Woven Garments</h3>
+          <div style="width:40px;height:2px;background:var(--golden);margin-bottom:.8rem"></div>
+          <div style="color:rgba(255,255,255,.65);font-size:.85rem;line-height:1.7">
+            Shirts · Ladies' Blouses · Uniforms<br/>Pants — Denim &amp; Non-Denim
+          </div>
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 50%);pointer-events:none"></div>
+        <div style="position:absolute;bottom:1.2rem;left:1.5rem;pointer-events:none" class="prod-static-title">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff">Woven Garments</h3>
+          <span style="color:var(--golden);font-size:.72rem;font-weight:600;letter-spacing:.1em">HOVER TO EXPLORE →</span>
+        </div>
+      </div>
+
+      <!-- CARD 3: Outerwear — image7.jpeg (bottom left) -->
+      <div class="prod-card" style="grid-column:1;grid-row:2;position:relative;overflow:hidden;border-radius:1.5rem;cursor:pointer"
+           onmouseenter="this.querySelector('.prod-info').style.transform='translateY(0)'"
+           onmouseleave="this.querySelector('.prod-info').style.transform='translateY(65%)'">
+        <img src="assets/image7.jpeg" alt="Outerwear"
+             style="width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .7s;display:block" class="prod-bg-img" />
+        <div style="position:absolute;top:1rem;left:1rem;background:#fff;border-radius:10px;padding:6px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.3)">
+          <img src="assets/image14.png" alt="" style="width:34px;height:34px;object-fit:contain" />
+        </div>
+        <div style="position:absolute;top:1rem;right:1rem;background:rgba(250,165,65,.9);color:#000;font-weight:800;font-size:.75rem;padding:.3rem .7rem;border-radius:999px;letter-spacing:.1em">03</div>
+        <div class="prod-info" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.97) 0%,rgba(0,0,0,.8) 60%,transparent 100%);padding:1.5rem;transform:translateY(65%);transition:transform .45s cubic-bezier(.4,0,.2,1)">
+          <div style="color:var(--golden);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.35rem">Category 03</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:.5rem">Outerwear</h3>
+          <div style="width:36px;height:2px;background:var(--golden);margin-bottom:.6rem"></div>
+          <div style="color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.6">Jackets · Hoodies · Coats · Winter Wear</div>
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 50%);pointer-events:none"></div>
+        <div style="position:absolute;bottom:1rem;left:1.25rem;pointer-events:none" class="prod-static-title">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff">Outerwear</h3>
+          <span style="color:var(--golden);font-size:.7rem;font-weight:600;letter-spacing:.1em">HOVER TO EXPLORE →</span>
+        </div>
+      </div>
+
+      <!-- CARD 4: Sweaters — image18.jpeg bg + image12.png icon (bottom right) -->
+      <div class="prod-card" style="grid-column:2;grid-row:2;position:relative;overflow:hidden;border-radius:1.5rem;cursor:pointer"
+           onmouseenter="this.querySelector('.prod-info').style.transform='translateY(0)'"
+           onmouseleave="this.querySelector('.prod-info').style.transform='translateY(65%)'">
+        <img src="assets/image18.jpeg" alt="Sweaters"
+             style="width:100%;height:100%;object-fit:cover;transition:transform .7s;display:block" class="prod-bg-img" />
+        <!-- sweater icon overlay -->
+        <div style="position:absolute;top:1rem;left:1rem;background:#fff;border-radius:10px;padding:6px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.3)">
+          <img src="assets/image12.png" alt="" style="width:34px;height:34px;object-fit:contain" />
+        </div>
+        <div style="position:absolute;top:1rem;right:1rem;background:rgba(250,165,65,.9);color:#000;font-weight:800;font-size:.75rem;padding:.3rem .7rem;border-radius:999px;letter-spacing:.1em">04</div>
+        <div class="prod-info" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.97) 0%,rgba(0,0,0,.8) 60%,transparent 100%);padding:1.5rem;transform:translateY(65%);transition:transform .45s cubic-bezier(.4,0,.2,1)">
+          <div style="color:var(--golden);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.35rem">Category 04</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:.5rem">Sweaters</h3>
+          <div style="width:36px;height:2px;background:var(--golden);margin-bottom:.6rem"></div>
+          <div style="color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.6">Pullovers · Cardigans · Knit Sweaters</div>
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 50%);pointer-events:none"></div>
+        <div style="position:absolute;bottom:1rem;left:1.25rem;pointer-events:none" class="prod-static-title">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff">Sweaters</h3>
+          <span style="color:var(--golden);font-size:.7rem;font-weight:600;letter-spacing:.1em">HOVER TO EXPLORE →</span>
+        </div>
+      </div>
+
+    </div><!-- end bento grid -->
+
+    <!-- ── PRODUCT STRIP: small icons + image13 ── -->
+    <div class="reveal mt-8 flex flex-wrap items-center justify-center gap-4 py-5 px-6 rounded-2xl"
+         style="background:rgba(250,165,65,.06);border:1px solid rgba(250,165,65,.15)">
+      <span style="color:rgba(255,255,255,.4);font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase">Also Available:</span>
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <div style="background:#fff;border-radius:8px;padding:4px;width:38px;height:38px;display:flex;align-items:center;justify-content:center">
+          <img src="assets/image13.png" alt="More products" style="width:28px;height:28px;object-fit:contain" />
+        </div>
+        <span style="color:rgba(255,255,255,.6);font-size:.85rem">Custom &amp; Specialty Items</span>
+      </div>
+      <div style="width:1px;height:24px;background:rgba(255,255,255,.1)"></div>
+      <span style="color:rgba(255,255,255,.5);font-size:.82rem">All items sourced to your exact specifications</span>
+      <a href="#contact" style="background:var(--golden);color:#000;font-weight:700;font-size:.8rem;padding:.5rem 1.2rem;border-radius:999px;text-decoration:none;letter-spacing:.05em">Request a Quote →</a>
+    </div>
+
+    <!-- ── HORIZONTAL SCROLL GALLERY ── -->
+    <div class="reveal mt-12">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff">Product Gallery</h3>
+        <span style="color:rgba(255,255,255,.3);font-size:.78rem;font-weight:500;letter-spacing:.08em">← SCROLL →</span>
+      </div>
+      <div style="display:flex;gap:1rem;overflow-x:auto;padding-bottom:.75rem;scrollbar-width:thin;scrollbar-color:rgba(250,165,65,.4) transparent">
+        <div style="flex:0 0 220px;height:280px;border-radius:1rem;overflow:hidden;position:relative">
+          <img src="assets/image8.jpeg" alt="Knitwear" style="width:100%;height:100%;object-fit:cover" />
+          <div style="position:absolute;bottom:.75rem;left:.75rem;background:rgba(0,0,0,.75);color:var(--golden);font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;letter-spacing:.08em">KNITWEAR</div>
+        </div>
+        <div style="flex:0 0 220px;height:280px;border-radius:1rem;overflow:hidden;position:relative">
+          <img src="assets/image9.jpeg" alt="Woven" style="width:100%;height:100%;object-fit:cover" />
+          <div style="position:absolute;bottom:.75rem;left:.75rem;background:rgba(0,0,0,.75);color:var(--golden);font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;letter-spacing:.08em">WOVEN</div>
+        </div>
+        <div style="flex:0 0 180px;height:280px;border-radius:1rem;overflow:hidden;position:relative">
+          <img src="assets/image7.jpeg" alt="Outerwear" style="width:100%;height:100%;object-fit:cover;object-position:center top" />
+          <div style="position:absolute;bottom:.75rem;left:.75rem;background:rgba(0,0,0,.75);color:var(--golden);font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;letter-spacing:.08em">OUTERWEAR</div>
+        </div>
+        <div style="flex:0 0 340px;height:280px;border-radius:1rem;overflow:hidden;position:relative">
+          <img src="assets/image18.jpeg" alt="Collection" style="width:100%;height:100%;object-fit:cover" />
+          <div style="position:absolute;bottom:.75rem;left:.75rem;background:rgba(0,0,0,.75);color:var(--golden);font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;letter-spacing:.08em">COLLECTION</div>
+        </div>
+        <div style="flex:0 0 200px;height:280px;border-radius:1rem;overflow:hidden;position:relative;background:#fff;display:flex;align-items:center;justify-content:center">
+          <img src="assets/image14.png" alt="Outerwear Icon" style="width:70%;height:70%;object-fit:contain" />
+          <div style="position:absolute;bottom:.75rem;left:.75rem;background:rgba(0,0,0,.75);color:var(--golden);font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;letter-spacing:.08em">DESIGN</div>
+        </div>
+        <div style="flex:0 0 160px;height:280px;border-radius:1rem;overflow:hidden;background:#1a1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;border:1px solid rgba(250,165,65,.2);padding:1rem">
+          <div style="background:#fff;border-radius:8px;padding:8px;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+            <img src="assets/image13.png" alt="" style="width:40px;height:40px;object-fit:contain" />
+          </div>
+          <div style="color:rgba(255,255,255,.5);font-size:.75rem;text-align:center;line-height:1.4">Custom &amp; Specialty Items</div>
+        </div>
       </div>
     </div>
 
-    <!-- Tab: Woven — image9.jpeg -->
-    <div id="tab-woven" class="tab-panel reveal">
-      <div class="grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl" style="background:var(--black);border:1px solid rgba(250,165,65,.2)">
-        <div class="h-80 md:h-auto overflow-hidden">
-          <img src="assets/image9.jpeg" alt="Woven Garments" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-        </div>
-        <div class="p-8 md:p-10">
-          <h3 class="font-bold text-white text-3xl mb-2" style="font-family:'Playfair Display',serif">Woven Garments</h3>
-          <div class="gold-line"></div>
-          <p style="color:rgba(255,255,255,.55)" class="mb-6">Precision-crafted woven garments for formal, casual, and workwear markets with superior fabric.</p>
-          <div>
-            <div class="prod-li">Shirts</div>
-            <div class="prod-li">Ladies' Blouses</div>
-            <div class="prod-li">Uniforms</div>
-            <div class="prod-li">Pants – Denim &amp; Non-Denim</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab: Outerwear — image7.jpeg -->
-    <div id="tab-outerwear" class="tab-panel reveal">
-      <div class="grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl" style="background:var(--black);border:1px solid rgba(250,165,65,.2)">
-        <div class="h-80 md:h-auto overflow-hidden">
-          <img src="assets/image7.jpeg" alt="Outerwear Products" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-        </div>
-        <div class="p-8 md:p-10">
-          <h3 class="font-bold text-white text-3xl mb-2" style="font-family:'Playfair Display',serif">Outerwear</h3>
-          <div class="gold-line"></div>
-          <p style="color:rgba(255,255,255,.55)" class="mb-6">High-performance outerwear built for protection and style across all climates and market segments.</p>
-          <div>
-            <div class="prod-li">Jackets</div>
-            <div class="prod-li">Hoodies</div>
-            <div class="prod-li">Coats</div>
-            <div class="prod-li">Winter Wear</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab: Sweaters — image12.png -->
-    <div id="tab-sweaters" class="tab-panel reveal">
-      <div class="grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl" style="background:var(--black);border:1px solid rgba(250,165,65,.2)">
-        <div class="h-80 md:h-auto overflow-hidden flex items-center justify-center" style="background:var(--gray2)">
-          <img src="assets/image12.png" alt="Sweaters" class="max-w-full max-h-full object-contain p-8" style="filter:drop-shadow(0 8px 24px rgba(250,165,65,.2))" />
-        </div>
-        <div class="p-8 md:p-10">
-          <h3 class="font-bold text-white text-3xl mb-2" style="font-family:'Playfair Display',serif">Sweaters</h3>
-          <div class="gold-line"></div>
-          <p style="color:rgba(255,255,255,.55)" class="mb-6">Premium-quality knitwear sweaters crafted for warmth, comfort, and timeless fashion appeal.</p>
-          <div>
-            <div class="prod-li">Pullovers</div>
-            <div class="prod-li">Cardigans</div>
-            <div class="prod-li">Knit Sweaters</div>
-            <div class="prod-li">All Kinds of Sweaters</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Gallery — image7, 8, 9, 18 (jpegs) + image14.png -->
-    <div class="mt-14 reveal">
-      <h3 class="font-bold text-center mb-8" style="font-size:1.6rem;font-family:'Playfair Display',serif;color:var(--black)">Product Showcase</h3>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div class="gal-img aspect-square shadow-md">
-          <img src="assets/image7.jpeg" alt="Outerwear Showcase" />
-        </div>
-        <div class="gal-img aspect-square shadow-md">
-          <img src="assets/image8.jpeg" alt="Knitwear Showcase" />
-        </div>
-        <div class="gal-img aspect-square shadow-md">
-          <img src="assets/image9.jpeg" alt="Woven Showcase" />
-        </div>
-        <div class="gal-img aspect-square shadow-md">
-          <img src="assets/image18.jpeg" alt="Collection Showcase" />
-        </div>
-        <div class="gal-img aspect-square shadow-md flex items-center justify-center" style="background:var(--black);border:1px solid rgba(250,165,65,.2)">
-          <!-- image14.png: dark pixels — white background makes lines visible -->
-          <div style="background:#fff;border-radius:10px;padding:10px;width:75%;height:75%;display:flex;align-items:center;justify-content:center">
-            <img src="assets/image14.png" alt="Product Icon" style="width:100%;height:100%;object-fit:contain" />
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
+
+<style>
+.prod-card:hover .prod-bg-img { transform: scale(1.06); }
+.prod-card:hover .prod-static-title { opacity: 0; }
+.prod-static-title { transition: opacity .3s; }
+</style>
 
 <!-- ════════════════════════════ CTA BAND ════════════════════════════ -->
 <div class="cta-band py-20">
