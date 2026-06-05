@@ -357,16 +357,19 @@
 
     <div class="grid md:grid-cols-2 gap-8 items-stretch">
 
-      <!-- VISION — image4.png (large illustration) + image5.svg (decorative strip) -->
+      <!-- VISION — image4.png (alpha=2/255, black strokes → white bg) + image5.svg strip -->
       <div class="reveal rounded-3xl overflow-hidden relative" style="background:var(--gray2);border:1px solid rgba(250,165,65,.2)">
-        <!-- image4.png as top visual -->
-        <div class="relative h-56 overflow-hidden">
-          <img src="assets/image4.png" alt="Vision" class="w-full h-full object-cover object-center" />
-          <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,.1),rgba(26,26,26,.95))"></div>
-          <!-- image5.svg — wide decorative SVG strip, rendered with golden tint on white bg -->
-          <div class="absolute bottom-0 left-0 right-0 overflow-hidden" style="height:40px;background:rgba(250,165,65,.08)">
-            <img src="assets/image5.svg" alt="" class="w-full h-full object-cover"
-                 style="filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%); opacity:.7" />
+        <!-- image4.png: nearly transparent black line art → white bg to reveal strokes -->
+        <div class="relative overflow-hidden flex items-center justify-center" style="height:220px;background:#ffffff">
+          <img src="assets/image4.png" alt="Vision Illustration"
+               class="w-full h-full object-contain p-4" />
+          <!-- golden gradient fade at bottom to blend into dark card -->
+          <div class="absolute bottom-0 left-0 right-0" style="height:60px;background:linear-gradient(to bottom,transparent,#1a1a1a)"></div>
+          <!-- image5.svg strip at bottom — golden tint -->
+          <div class="absolute bottom-0 left-0 right-0 overflow-hidden" style="height:36px">
+            <img src="assets/image5.svg" alt=""
+                 class="w-full h-full object-cover"
+                 style="filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%); opacity:.6" />
           </div>
         </div>
         <div class="p-8">
@@ -379,15 +382,19 @@
         </div>
       </div>
 
-      <!-- MISSION — image5.png + image7.svg -->
+      <!-- MISSION — image5.png (alpha=18/255, black strokes → white bg) + image7.svg -->
       <div class="reveal rounded-3xl overflow-hidden relative" style="background:var(--gray2);border:1px solid rgba(250,165,65,.2);transition-delay:.15s">
-        <div class="relative h-56 overflow-hidden" style="background:var(--gray)">
-          <img src="assets/image5.png" alt="Mission" class="absolute inset-0 w-full h-full object-contain p-8" style="opacity:.85" />
-          <!-- image7.svg as decorative element — force golden color -->
-          <div class="absolute bottom-4 right-4" style="opacity:.5;background:rgba(255,255,255,.08);border-radius:.5rem;padding:6px">
-            <img src="assets/image7.svg" alt="" style="width:100px;filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%)" />
+        <div class="relative overflow-hidden flex items-center justify-center" style="height:220px;background:#ffffff">
+          <!-- image5.png: nearly transparent black line art → white bg reveals it -->
+          <img src="assets/image5.png" alt="Mission Decoration"
+               class="object-contain" style="max-height:100px; max-width:80%" />
+          <!-- image7.svg in corner — golden tint on semi-transparent white bg -->
+          <div class="absolute bottom-3 right-3" style="background:rgba(255,255,255,.9);border-radius:8px;padding:5px">
+            <img src="assets/image7.svg" alt=""
+                 style="width:80px;height:auto;filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%)" />
           </div>
-          <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(26,26,26,.9))"></div>
+          <!-- bottom fade to dark -->
+          <div class="absolute bottom-0 left-0 right-0" style="height:60px;background:linear-gradient(to bottom,transparent,#1a1a1a)"></div>
         </div>
         <div class="p-8">
           <div class="text-3xl mb-3">🚀</div>
