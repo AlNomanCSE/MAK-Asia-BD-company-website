@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MAK ASIA BD – A dynamic and reliable garments buying house in Bangladesh specializing in sourcing, product development, and production management for international clients." />
+  <meta name="keywords" content="garments buying house Bangladesh, apparel sourcing, knitwear, woven garments, outerwear, sweaters, MAK ASIA BD" />
+  <meta name="author" content="MAK ASIA BD" />
+  <title>MAK ASIA BD – Garments Buying House Bangladesh</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:  { DEFAULT: '#1a2e4a', 50: '#f0f4f8', 100: '#d9e4f0', 200: '#b3c9e1', 300: '#7aa0c4', 400: '#4a78a8', 500: '#2a5488', 600: '#1a3a6e', 700: '#1a2e4a', 800: '#152440', 900: '#0f1b30' },
+            teal:  { DEFAULT: '#0d8f7e', 50: '#f0faf8', 100: '#ccf0ea', 200: '#99e1d5', 300: '#5ec9b8', 400: '#2aad9b', 500: '#0d8f7e', 600: '#0a7066', 700: '#08564f', 800: '#063d38', 900: '#042820' },
+            gold:  { DEFAULT: '#c9963b', 50: '#fdf8f0', 100: '#faebd5', 200: '#f4d4a2', 300: '#eab86a', 400: '#de9c3f', 500: '#c9963b', 600: '#a67830', 700: '#845d24', 800: '#62441b', 900: '#402c12' },
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans:  ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ─── Base ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; }
+
+    /* ─── Dark-mode toggle ──────────────────────────────────── */
+    .dark body         { background:#0f1b30; color:#e2e8f0; }
+    .dark .bg-white    { background:#152440 !important; }
+    .dark .bg-gray-50  { background:#1a2e4a !important; }
+    .dark .bg-gray-100 { background:#1e3654 !important; }
+    .dark .text-gray-600 { color:#94a3b8 !important; }
+    .dark .text-gray-700 { color:#cbd5e1 !important; }
+    .dark .text-gray-800 { color:#e2e8f0 !important; }
+    .dark .border-gray-200 { border-color:#2d4a6b !important; }
+    .dark nav          { background:rgba(15,27,48,.97) !important; }
+    .dark .card-shadow { box-shadow:0 4px 24px rgba(0,0,0,.4); }
+
+    /* ─── Scroll-reveal animation ───────────────────────────── */
+    .reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    .hero-bg {
+      background: linear-gradient(135deg, #0f1b30 0%, #1a2e4a 45%, #0a3a50 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content:'';
+      position:absolute; inset:0;
+      background: url('assets/image3.jpeg') center/cover no-repeat;
+      opacity:.18;
+      z-index:0;
+    }
+    .hero-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(135deg,rgba(15,27,48,.9) 0%,rgba(26,46,74,.75) 60%,rgba(10,58,80,.6) 100%);
+      z-index:1;
+    }
+
+    /* ─── Animated gradient border for cards ───────────────── */
+    .gradient-border {
+      position:relative;
+      background:white;
+      border-radius:1rem;
+    }
+    .gradient-border::before {
+      content:'';
+      position:absolute; inset:-2px;
+      background:linear-gradient(135deg, #0d8f7e, #1a2e4a, #c9963b);
+      border-radius:calc(1rem + 2px);
+      z-index:-1;
+      opacity:0;
+      transition:opacity .3s;
+    }
+    .gradient-border:hover::before { opacity:1; }
+    .dark .gradient-border { background:#152440; }
+
+    /* ─── Service icon circle ───────────────────────────────── */
+    .service-icon {
+      width:64px; height:64px;
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.75rem;
+      margin-bottom:1rem;
+    }
+
+    /* ─── Product tab system ────────────────────────────────── */
+    .tab-btn { transition:all .25s; }
+    .tab-btn.active {
+      background: linear-gradient(135deg,#0d8f7e,#1a2e4a);
+      color:white;
+      box-shadow:0 4px 15px rgba(13,143,126,.4);
+    }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    /* ─── Navbar link underline hover ───────────────────────── */
+    .nav-link { position:relative; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:-4px; left:0;
+      width:0; height:2px;
+      background:linear-gradient(90deg,#0d8f7e,#c9963b);
+      transition:width .3s;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width:100%; }
+
+    /* ─── Floating particles (hero) ──────────────────────────── */
+    .particle {
+      position:absolute; border-radius:50%;
+      background:rgba(201,150,59,.15);
+      animation:float linear infinite;
+    }
+    @keyframes float {
+      0%   { transform:translateY(100vh) scale(0); opacity:0; }
+      10%  { opacity:1; }
+      90%  { opacity:.6; }
+      100% { transform:translateY(-10vh) scale(1.5); opacity:0; }
+    }
+
+    /* ─── Stats counter ──────────────────────────────────────── */
+    .stat-card { transition:transform .3s; }
+    .stat-card:hover { transform:translateY(-4px); }
+
+    /* ─── Contact input focus ─────────────────────────────────── */
+    .contact-input:focus {
+      outline:none;
+      border-color:#0d8f7e;
+      box-shadow:0 0 0 3px rgba(13,143,126,.2);
+    }
+
+    /* ─── Divider wave ────────────────────────────────────────── */
+    .wave-divider { line-height:0; }
+    .wave-divider svg { display:block; }
+
+    /* ─── Scroll-to-top button ────────────────────────────────── */
+    #scrollTop {
+      position:fixed; bottom:2rem; right:2rem; z-index:999;
+      width:44px; height:44px; border-radius:50%;
+      background:linear-gradient(135deg,#0d8f7e,#1a2e4a);
+      color:white; border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 15px rgba(0,0,0,.3);
+      opacity:0; pointer-events:none;
+      transition:opacity .3s, transform .3s;
+    }
+    #scrollTop.show { opacity:1; pointer-events:all; }
+    #scrollTop:hover { transform:translateY(-3px); }
+
+    /* ─── Loader ───────────────────────────────────────────────── */
+    #loader {
+      position:fixed; inset:0; background:#0f1b30;
+      display:flex; align-items:center; justify-content:center;
+      z-index:9999; transition:opacity .5s;
+    }
+    #loader.hidden { opacity:0; pointer-events:none; }
+    .loader-ring {
+      width:56px; height:56px; border:4px solid rgba(255,255,255,.1);
+      border-top-color:#0d8f7e; border-radius:50%;
+      animation:spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* ─── Dark mode toggle btn ────────────────────────────────── */
+    #darkToggle { cursor:pointer; transition:transform .3s; }
+    #darkToggle:hover { transform:rotate(20deg); }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 font-sans antialiased">
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- PAGE LOADER                                              -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="loader">
+    <div class="text-center">
+      <div class="loader-ring mx-auto mb-4"></div>
+      <p class="text-white/60 text-sm tracking-widest uppercase">Loading…</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- NAVBAR                                                  -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <img src="assets/image1.png" alt="MAK ASIA BD Logo" class="h-10 w-auto object-contain"
+               onerror="this.style.display='none'" />
+          <div>
+            <span class="text-white font-serif font-bold text-lg leading-tight block">MAK ASIA BD</span>
+            <span class="text-teal-300 text-xs tracking-widest uppercase hidden sm:block">Buying House</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-6">
+          <a href="#home"     class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Home</a>
+          <a href="#about"    class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">About</a>
+          <a href="#services" class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Services</a>
+          <a href="#founder"  class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Team</a>
+          <a href="#products" class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Products</a>
+          <a href="#contact"  class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Contact</a>
+          <button id="darkToggle" title="Toggle dark mode"
+                  class="text-white/80 hover:text-white ml-2 text-xl">🌙</button>
+          <a href="#contact"
+             class="ml-2 px-5 py-2 rounded-full text-sm font-semibold
+                    bg-gradient-to-r from-teal-500 to-teal-700 text-white
+                    hover:shadow-lg hover:shadow-teal-500/30 hover:-translate-y-0.5 transition-all">
+            Get in Touch
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-white p-2" aria-label="Toggle menu">
+          <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-navy-900/97 backdrop-blur-md border-t border-white/10 px-4 pb-6 pt-2">
+      <div class="flex flex-col gap-4 mt-4">
+        <a href="#home"     class="text-white/90 font-medium py-1" onclick="closeMobile()">Home</a>
+        <a href="#about"    class="text-white/90 font-medium py-1" onclick="closeMobile()">About</a>
+        <a href="#services" class="text-white/90 font-medium py-1" onclick="closeMobile()">Services</a>
+        <a href="#founder"  class="text-white/90 font-medium py-1" onclick="closeMobile()">Team</a>
+        <a href="#products" class="text-white/90 font-medium py-1" onclick="closeMobile()">Products</a>
+        <a href="#contact"  class="text-white/90 font-medium py-1" onclick="closeMobile()">Contact</a>
+        <a href="#contact"
+           class="mt-2 px-5 py-2 rounded-full text-sm font-semibold text-center
+                  bg-gradient-to-r from-teal-500 to-teal-700 text-white"
+           onclick="closeMobile()">Get in Touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- HERO SECTION                                            -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <section id="home" class="hero-bg min-h-screen flex items-center relative">
+    <div class="hero-overlay"></div>
+
+    <!-- Floating particles -->
+    <div class="absolute inset-0 z-1 overflow-hidden pointer-events-none" id="particles"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 w-full">
+      <div class="max-w-3xl">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 text-xs font-semibold tracking-widest uppercase mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
+          Bangladesh Garments Buying House
+        </div>
+
+        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+          MAK<br/>
+          <span class="bg-gradient-to-r from-teal-400 via-teal-300 to-gold-400 bg-clip-text text-transparent">
+            ASIA BD
+          </span>
+        </h1>
+
+        <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-4 max-w-2xl">
+          A dynamic and reliable garments buying house in Bangladesh, bridging global buyers with local manufacturers through sourcing excellence, product development, and production management.
+        </p>
+
+        <p class="text-gold-400 font-semibold text-sm tracking-wider uppercase mb-10">
+          Quality · Integrity · Timely Delivery
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact"
+             class="px-8 py-3.5 rounded-full font-semibold text-white
+                    bg-gradient-to-r from-teal-500 to-teal-700
+                    hover:shadow-xl hover:shadow-teal-500/30 hover:-translate-y-1 transition-all">
+            Get in Touch
+          </a>
+          <a href="#products"
+             class="px-8 py-3.5 rounded-full font-semibold text-white
+                    border border-white/30 hover:bg-white/10 hover:-translate-y-1 transition-all">
+            View Products
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero stats -->
+      <div class="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4 text-center">
+          <div class="text-3xl font-bold font-serif text-gold-400 mb-1">2024</div>
+          <div class="text-white/70 text-xs uppercase tracking-wider">Founded</div>
+        </div>
+        <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4 text-center">
+          <div class="text-3xl font-bold font-serif text-gold-400 mb-1">4+</div>
+          <div class="text-white/70 text-xs uppercase tracking-wider">Core Services</div>
+        </div>
+        <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4 text-center">
+          <div class="text-3xl font-bold font-serif text-gold-400 mb-1">4</div>
+          <div class="text-white/70 text-xs uppercase tracking-wider">Product Lines</div>
+        </div>
+        <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4 text-center">
+          <div class="text-3xl font-bold font-serif text-gold-400 mb-1">100%</div>
+          <div class="text-white/70 text-xs uppercase tracking-wider">Quality Focus</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+      <div class="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
+        <div class="w-1 h-2 bg-white/60 rounded-full animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- ABOUT US                                                -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <section id="about" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Image collage -->
+        <div class="reveal relative">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height:480px;">
+            <img src="assets/image2.jpeg" alt="MAK ASIA BD Operations"
+                 class="w-full h-full object-cover"
+                 onerror="this.src='assets/image3.jpeg'" />
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent"></div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-6 -right-4 md:-right-8 bg-white dark:bg-navy-800 rounded-2xl shadow-xl p-5 w-44">
+            <div class="text-3xl font-bold font-serif text-teal-600 mb-1">Since</div>
+            <div class="text-4xl font-bold font-serif text-navy-700 dark:text-white">2024</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Excellence in Apparel</div>
+          </div>
+          <!-- Accent shape -->
+          <div class="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-teal-500/20 blur-2xl"></div>
+        </div>
+
+        <!-- Text -->
+        <div class="reveal">
+          <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
+            About Us
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700 leading-tight mb-6">
+            Your Trusted<br/>
+            <span class="text-teal-600">Sourcing Partner</span>
+          </h2>
+          <p class="text-gray-600 text-lg leading-relaxed mb-6">
+            MAK ASIA BD is a dynamic and reliable garments buying house based in Bangladesh, specializing in sourcing, product development, and production management for international clients.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-8">
+            We act as a bridge between global buyers and local manufacturers, ensuring quality, cost efficiency, and timely delivery. Our team brings deep industry knowledge and commitment to every partnership.
+          </p>
+
+          <!-- Feature pills -->
+          <div class="flex flex-wrap gap-3">
+            <span class="flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-sm font-medium border border-teal-100">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Quality Assurance
+            </span>
+            <span class="flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-sm font-medium border border-teal-100">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Timely Delivery
+            </span>
+            <span class="flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-sm font-medium border border-teal-100">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Cost Efficient
+            </span>
+            <span class="flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-sm font-medium border border-teal-100">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Sustainable Practices
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- VISION & MISSION                                        -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <section id="vision" class="py-24 bg-navy-700 relative overflow-hidden">
+    <!-- Background texture -->
+    <div class="absolute inset-0 opacity-5" style="background-image:url('assets/image4.png');background-size:cover;background-repeat:no-repeat;"></div>
+    <!-- Glowing circles -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block px-4 py-1 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 text-xs font-semibold tracking-widest uppercase mb-4">
+          Our Direction
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-white">Vision &amp; Mission</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Vision -->
+        <div class="reveal bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-10 hover:bg-white/10 transition-all group">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-teal-500/30">
+            🎯
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-white mb-4">Our Vision</h3>
+          <p class="text-white/75 leading-relaxed text-lg">
+            To be a reliable sourcing partner in the apparel sector by offering excellence, innovation and sustainability — setting the benchmark for garments buying houses in Bangladesh.
+          </p>
+        </div>
+
+        <!-- Mission -->
+        <div class="reveal bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-10 hover:bg-white/10 transition-all group">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-gold-500/30">
+            🚀
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-white mb-4">Our Mission</h3>
+          <p class="text-white/75 leading-relaxed text-lg">
+            Offering garments of high quality at competitive price, ensuring timely delivery with stringent quality checks, and creating sustainable business relationships with buyers and sellers worldwide.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SERVICES                                                -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <section id="services" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
+          What We Do
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700 mb-4">Our Services</h2>
+        <p class="text-gray-500 max-w-2xl mx-auto">End-to-end garments solutions from material sourcing to factory compliance — we handle every stage so your supply chain runs flawlessly.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card 1 -->
+        <div class="reveal gradient-border card-shadow rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300 group cursor-default">
+          <div class="service-icon bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-colors mb-5">
+            🧵
+          </div>
+          <h3 class="font-serif text-lg font-bold text-navy-700 mb-3">Material &amp; Supplier Solutions</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Cost-efficient sourcing with a focus on premium quality, trusted global partners, and carefully selected materials and trims.
+          </p>
+          <div class="mt-5 pt-5 border-t border-gray-100">
+            <span class="text-teal-600 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
+              Learn more <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="reveal gradient-border card-shadow rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300 group cursor-default" style="transition-delay:.1s">
+          <div class="service-icon bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors mb-5">
+            📐
+          </div>
+          <h3 class="font-serif text-lg font-bold text-navy-700 mb-3">Coordination &amp; Product Development</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            From concept to completion, ensuring refined product development, strategic pricing, and seamless coordination at every stage.
+          </p>
+          <div class="mt-5 pt-5 border-t border-gray-100">
+            <span class="text-teal-600 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
+              Learn more <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="reveal gradient-border card-shadow rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300 group cursor-default" style="transition-delay:.2s">
+          <div class="service-icon bg-green-50 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors mb-5">
+            🔍
+          </div>
+          <h3 class="font-serif text-lg font-bold text-navy-700 mb-3">Product Quality Management</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Maintaining the highest standards through continuous monitoring, risk evaluation, and final verification at every production step.
+          </p>
+          <div class="mt-5 pt-5 border-t border-gray-100">
+            <span class="text-teal-600 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
+              Learn more <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="reveal gradient-border card-shadow rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300 group cursor-default" style="transition-delay:.3s">
+          <div class="service-icon bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors mb-5">
+            🏭
+          </div>
+          <h3 class="font-serif text-lg font-bold text-navy-700 mb-3">Factory Compliance &amp; Review</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Comprehensive factory assessments ensuring full compliance, safety, and technical excellence across all manufacturing partners.
+          </p>
+          <div class="mt-5 pt-5 border-t border-gray-100">
+            <span class="text-teal-600 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
+              Learn more <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- FOUNDER SECTION                                         -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <section id="founder" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
+          Leadership
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700">Founder &amp; CEO</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-12 items-center">
+
+        <!-- Photo -->
+        <div class="lg:col-span-2 reveal flex justify-center lg:justify-end">
+          <div class="relative">
+            <div class="w-72 h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-2xl ring-4 ring-teal-200 ring-offset-4">
+              <img src="assets/image6.jpeg" alt="Md. Aliul Islam – Founder & CEO of MAK ASIA BD"
+                   class="w-full h-full object-cover object-top" />
+            </div>
+            <!-- Decorative elements -->
+            <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-gold-400 rounded-2xl -z-10 opacity-60"></div>
+            <div class="absolute -top-4 -right-4 w-16 h-16 bg-teal-400 rounded-full -z-10 opacity-50"></div>
+
+            <!-- Name badge -->
+            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-lg px-5 py-3 text-center whitespace-nowrap">
+              <div class="font-semibold text-navy-700 text-sm">Md. Aliul Islam</div>
+              <div class="text-teal-600 text-xs font-medium">Founder &amp; CEO</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div class="lg:col-span-3 reveal mt-12 lg:mt-0">
+          <div class="text-5xl text-teal-200 font-serif leading-none mb-2">"</div>
+          <h3 class="font-serif text-2xl md:text-3xl font-bold text-navy-700 mb-2">
+            Message from the Founder &amp; CEO
+          </h3>
+          <p class="text-teal-600 font-medium mb-6">Welcome to MAK ASIA BD</p>
+
+          <div class="space-y-4 text-gray-600 leading-relaxed">
+            <p>
+              Since 2024, we have been committed to excellence in apparel sourcing and manufacturing, built on trust, integrity, and strong partnerships. We adapt to evolving trends and sustainable practices while ensuring high quality, timely delivery, and cost efficiency.
+            </p>
+            <p>
+              We aim to build long-term relationships by providing reliable and tailored solutions to each of our valued clients worldwide.
+            </p>
+            <p class="font-medium text-navy-700 italic">
+              Thank you for considering MAK ASIA BD as your sourcing partner.
+            </p>
+          </div>
+
+          <div class="mt-8 flex items-center gap-4">
+            <div>
+              <div class="font-serif text-xl font-bold text-navy-700">Md. Aliul Islam</div>
+              <div class="text-teal-600 text-sm font-medium">Founder &amp; CEO, MAK ASIA BD</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- PRODUCTS                                                -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <section id="products" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-12 reveal">
+        <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
+          Product Range
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700 mb-4">Our Products</h2>
+        <p class="text-gray-500 max-w-2xl mx-auto">From everyday knitwear to premium outerwear — we source across all major apparel categories with uncompromising quality standards.</p>
+      </div>
+
+      <!-- Product Tabs -->
+      <div class="reveal flex flex-wrap justify-center gap-3 mb-10">
+        <button class="tab-btn active px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 text-gray-600 hover:border-teal-500 transition-all"
+                data-tab="knitwear">🧶 Knitwear</button>
+        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 text-gray-600 hover:border-teal-500 transition-all"
+                data-tab="woven">👔 Woven Garments</button>
+        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 text-gray-600 hover:border-teal-500 transition-all"
+                data-tab="outerwear">🧥 Outerwear</button>
+        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 text-gray-600 hover:border-teal-500 transition-all"
+                data-tab="sweaters">🧣 Sweaters</button>
+      </div>
+
+      <!-- Tab Panels -->
+      <div id="tab-knitwear" class="tab-panel active reveal">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="rounded-3xl overflow-hidden shadow-xl h-80">
+            <img src="assets/image8.jpeg" alt="Knitwear Products"
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                 onerror="this.src='assets/image7.jpeg'" />
+          </div>
+          <div>
+            <h3 class="font-serif text-3xl font-bold text-navy-700 mb-4">Knitwear</h3>
+            <p class="text-gray-600 mb-6">Premium knitwear crafted for comfort and style, suitable for every season and market segment.</p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> T-Shirts &amp; Tank Tops</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Polo Shirts</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Leggings</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Hoodies &amp; Jackets</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> All Kinds of Knitwear</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-woven" class="tab-panel reveal">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="rounded-3xl overflow-hidden shadow-xl h-80">
+            <img src="assets/image9.jpeg" alt="Woven Garments"
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                 onerror="this.src='assets/image7.jpeg'" />
+          </div>
+          <div>
+            <h3 class="font-serif text-3xl font-bold text-navy-700 mb-4">Woven Garments</h3>
+            <p class="text-gray-600 mb-6">Precision-crafted woven garments for formal, casual, and workwear markets with superior fabric selection.</p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Shirts</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Ladies' Blouses</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Uniforms</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Pants – Denim &amp; Non-Denim</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-outerwear" class="tab-panel reveal">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="rounded-3xl overflow-hidden shadow-xl h-80">
+            <img src="assets/image7.jpeg" alt="Outerwear Products"
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div>
+            <h3 class="font-serif text-3xl font-bold text-navy-700 mb-4">Outerwear</h3>
+            <p class="text-gray-600 mb-6">High-performance outerwear built for protection and style across all climate zones and market segments.</p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Jackets</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Hoodies</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Coats</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Winter Wear</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-sweaters" class="tab-panel reveal">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="rounded-3xl overflow-hidden shadow-xl h-80">
+            <img src="assets/image12.png" alt="Sweaters Products"
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                 onerror="this.src='assets/image11.png'" />
+          </div>
+          <div>
+            <h3 class="font-serif text-3xl font-bold text-navy-700 mb-4">Sweaters</h3>
+            <p class="text-gray-600 mb-6">Cozy, premium-quality knitwear sweaters crafted for warmth, comfort, and timeless fashion appeal.</p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Pullovers</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Cardigans</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Knit Sweaters</li>
+              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> All Kinds of Sweaters</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Gallery -->
+      <div class="mt-16 reveal">
+        <h3 class="font-serif text-2xl font-bold text-navy-700 text-center mb-8">Product Showcase</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="rounded-2xl overflow-hidden shadow-md aspect-square group">
+            <img src="assets/image7.jpeg" alt="Knitwear" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md aspect-square group">
+            <img src="assets/image8.jpeg" alt="Woven" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md aspect-square group">
+            <img src="assets/image9.jpeg" alt="Outerwear" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md aspect-square group">
+            <img src="assets/image18.jpeg" alt="Sweaters" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- WHY CHOOSE US (CTA BAND)                                -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <section class="py-20 bg-gradient-to-r from-teal-600 via-teal-700 to-navy-700 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image:url('assets/image3.jpeg');background-size:cover;"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-4">
+        Ready to Partner with Us?
+      </h2>
+      <p class="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+        Join global buyers who trust MAK ASIA BD for reliable, high-quality garment sourcing from Bangladesh.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#contact"
+           class="px-8 py-3.5 rounded-full font-semibold text-teal-700 bg-white
+                  hover:shadow-xl hover:-translate-y-1 transition-all">
+          Contact Us Today
+        </a>
+        <a href="mailto:aliul@makasiabd.com"
+           class="px-8 py-3.5 rounded-full font-semibold text-white border-2 border-white/60
+                  hover:bg-white/10 hover:-translate-y-1 transition-all">
+          Send Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- CONTACT                                                 -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <section id="contact" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
+          Reach Out
+        </div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700 mb-4">Contact Us</h2>
+        <p class="text-gray-500 max-w-xl mx-auto">We're ready to discuss your sourcing requirements. Reach out and let's build something great together.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-12">
+
+        <!-- Contact Info -->
+        <div class="lg:col-span-2 reveal space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl flex-shrink-0">📞</div>
+            <div>
+              <div class="font-semibold text-navy-700 mb-1">Phone</div>
+              <a href="tel:+8801730426711" class="text-teal-600 hover:underline">+880 1730 426711</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl flex-shrink-0">✉️</div>
+            <div>
+              <div class="font-semibold text-navy-700 mb-1">Email</div>
+              <a href="mailto:aliul@makasiabd.com" class="text-teal-600 hover:underline break-all">aliul@makasiabd.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl flex-shrink-0">📍</div>
+            <div>
+              <div class="font-semibold text-navy-700 mb-1">Address</div>
+              <p class="text-gray-600 leading-relaxed">
+                House-05, Badaldi Main Road,<br/>
+                Turag, Uttara, Dhaka-1230,<br/>
+                Bangladesh
+              </p>
+            </div>
+          </div>
+
+          <!-- Map embed placeholder -->
+          <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm mt-6" style="height:220px;">
+            <iframe
+              title="MAK ASIA BD Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.4!2d90.397!3d23.888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDUzJzE2LjgiTiA5MMKwMjMnNDkuMiJF!5e0!3m2!1sen!2sbd!4v1"
+              width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-3 reveal">
+          <form id="contactForm" class="bg-white rounded-3xl shadow-lg p-8 md:p-10 space-y-5">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Your Name *</label>
+                <input type="text" placeholder="John Smith" required
+                       class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Company Name</label>
+                <input type="text" placeholder="Your Company Ltd."
+                       class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Email Address *</label>
+              <input type="email" placeholder="you@company.com" required
+                     class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Product Interest</label>
+              <select class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all bg-white">
+                <option value="">Select a product category</option>
+                <option>Knitwear</option>
+                <option>Woven Garments</option>
+                <option>Outerwear</option>
+                <option>Sweaters</option>
+                <option>Multiple / General Enquiry</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Message *</label>
+              <textarea rows="5" placeholder="Tell us about your sourcing requirements…" required
+                        class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all resize-none"></textarea>
+            </div>
+            <button type="submit"
+                    class="w-full py-3.5 rounded-xl font-semibold text-white
+                           bg-gradient-to-r from-teal-500 to-teal-700
+                           hover:shadow-lg hover:shadow-teal-500/30 hover:-translate-y-0.5 transition-all">
+              Send Message ✈️
+            </button>
+            <p id="formMsg" class="text-center text-sm text-teal-600 hidden font-medium">
+              ✅ Thank you! We'll get back to you shortly.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- FOOTER                                                  -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <footer class="bg-navy-700 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="assets/image1.png" alt="MAK ASIA BD" class="h-10 w-auto object-contain"
+                 onerror="this.style.display='none'" />
+            <div>
+              <div class="font-serif font-bold text-xl">MAK ASIA BD</div>
+              <div class="text-teal-400 text-xs tracking-wider">Garments Buying House</div>
+            </div>
+          </div>
+          <p class="text-white/60 text-sm leading-relaxed max-w-xs">
+            A dynamic and reliable garments buying house based in Bangladesh — your trusted bridge between global buyers and local manufacturers.
+          </p>
+          <div class="mt-5 flex gap-3">
+            <a href="mailto:aliul@makasiabd.com"
+               class="w-9 h-9 rounded-full bg-white/10 hover:bg-teal-500 flex items-center justify-center transition-colors text-sm"
+               title="Email">✉️</a>
+            <a href="tel:+8801730426711"
+               class="w-9 h-9 rounded-full bg-white/10 hover:bg-teal-500 flex items-center justify-center transition-colors text-sm"
+               title="Phone">📞</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li><a href="#home"     class="hover:text-teal-300 transition-colors">Home</a></li>
+            <li><a href="#about"    class="hover:text-teal-300 transition-colors">About Us</a></li>
+            <li><a href="#services" class="hover:text-teal-300 transition-colors">Our Services</a></li>
+            <li><a href="#founder"  class="hover:text-teal-300 transition-colors">Leadership</a></li>
+            <li><a href="#products" class="hover:text-teal-300 transition-colors">Our Products</a></li>
+            <li><a href="#contact"  class="hover:text-teal-300 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm text-white/60">
+            <li class="flex items-start gap-2">
+              <span>📞</span>
+              <a href="tel:+8801730426711" class="hover:text-teal-300 transition-colors">+880 1730 426711</a>
+            </li>
+            <li class="flex items-start gap-2">
+              <span>✉️</span>
+              <a href="mailto:aliul@makasiabd.com" class="hover:text-teal-300 transition-colors break-all">aliul@makasiabd.com</a>
+            </li>
+            <li class="flex items-start gap-2">
+              <span>📍</span>
+              <span>House-05, Badaldi Main Road, Turag, Uttara, Dhaka-1230, Bangladesh</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-white/40 text-sm text-center">
+          &copy; 2024–2026 MAK ASIA BD. All rights reserved.
+        </p>
+        <p class="text-white/30 text-xs">
+          Garments Buying House · Bangladesh
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll-to-top -->
+  <button id="scrollTop" title="Back to top">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- JAVASCRIPT                                              -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <script>
+    /* ── Loader ─────────────────────────────────────────── */
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => loader.classList.add('hidden'), 600);
+    });
+
+    /* ── Dark mode ──────────────────────────────────────── */
+    const html = document.documentElement;
+    const toggle = document.getElementById('darkToggle');
+    if (localStorage.getItem('dark') === '1') {
+      html.classList.add('dark');
+      toggle.textContent = '☀️';
+    }
+    toggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      localStorage.setItem('dark', isDark ? '1' : '0');
+      toggle.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    /* ── Sticky navbar ──────────────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navbar.classList.remove('bg-transparent');
+        navbar.classList.add('bg-navy-900/97', 'backdrop-blur-md', 'shadow-md');
+      } else {
+        navbar.classList.add('bg-transparent');
+        navbar.classList.remove('bg-navy-900/97', 'backdrop-blur-md', 'shadow-md');
+      }
+    });
+
+    /* ── Mobile menu ────────────────────────────────────── */
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu    = document.getElementById('mobileMenu');
+    const menuIcon      = document.getElementById('menuIcon');
+    const closeIcon     = document.getElementById('closeIcon');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+    function closeMobile() {
+      mobileMenu.classList.add('hidden');
+      menuIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+    }
+
+    /* ── Scroll-to-top ──────────────────────────────────── */
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ── Scroll reveal ──────────────────────────────────── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    /* ── Product tabs ───────────────────────────────────── */
+    const tabBtns   = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    /* ── Contact form ───────────────────────────────────── */
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('formMsg');
+      msg.classList.remove('hidden');
+      e.target.reset();
+      setTimeout(() => msg.classList.add('hidden'), 5000);
+    });
+
+    /* ── Floating particles ─────────────────────────────── */
+    const particleContainer = document.getElementById('particles');
+    for (let i = 0; i < 12; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 30 + 10;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random() * 100}%;
+        animation-duration:${Math.random() * 15 + 10}s;
+        animation-delay:${Math.random() * 10}s;
+      `;
+      particleContainer.appendChild(p);
+    }
+
+    /* ── Active nav link on scroll ──────────────────────── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+
+</body>
+</html>
