@@ -8,22 +8,20 @@
   <meta name="author" content="MAK ASIA BD" />
   <title>MAK ASIA BD – Garments Buying House Bangladesh</title>
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            navy:  { DEFAULT: '#1a2e4a', 50: '#f0f4f8', 100: '#d9e4f0', 200: '#b3c9e1', 300: '#7aa0c4', 400: '#4a78a8', 500: '#2a5488', 600: '#1a3a6e', 700: '#1a2e4a', 800: '#152440', 900: '#0f1b30' },
-            teal:  { DEFAULT: '#0d8f7e', 50: '#f0faf8', 100: '#ccf0ea', 200: '#99e1d5', 300: '#5ec9b8', 400: '#2aad9b', 500: '#0d8f7e', 600: '#0a7066', 700: '#08564f', 800: '#063d38', 900: '#042820' },
-            gold:  { DEFAULT: '#c9963b', 50: '#fdf8f0', 100: '#faebd5', 200: '#f4d4a2', 300: '#eab86a', 400: '#de9c3f', 500: '#c9963b', 600: '#a67830', 700: '#845d24', 800: '#62441b', 900: '#402c12' },
+            black:   '#000000',
+            golden:  '#FAA541',
+            cream:   '#FFEBDB',
+            offwhite:'#FFF5EE',
           },
           fontFamily: {
             serif: ['Playfair Display', 'Georgia', 'serif'],
@@ -35,203 +33,324 @@
   </script>
 
   <style>
-    /* ─── Base ─────────────────────────────────────────────── */
+    /* ── Root palette variables ─────────────────────────── */
+    :root {
+      --black:   #000000;
+      --golden:  #FAA541;
+      --golden2: #f08c1f;
+      --cream:   #FFEBDB;
+      --white:   #FFFFFF;
+      --gray:    #1a1a1a;
+      --gray2:   #2a2a2a;
+    }
+
     *, *::before, *::after { box-sizing: border-box; }
     html { font-family: 'Inter', sans-serif; }
+    body { background: var(--black); color: var(--white); }
 
-    /* ─── Dark-mode toggle ──────────────────────────────────── */
-    .dark body         { background:#0f1b30; color:#e2e8f0; }
-    .dark .bg-white    { background:#152440 !important; }
-    .dark .bg-gray-50  { background:#1a2e4a !important; }
-    .dark .bg-gray-100 { background:#1e3654 !important; }
-    .dark .text-gray-600 { color:#94a3b8 !important; }
-    .dark .text-gray-700 { color:#cbd5e1 !important; }
-    .dark .text-gray-800 { color:#e2e8f0 !important; }
-    .dark .border-gray-200 { border-color:#2d4a6b !important; }
-    .dark nav          { background:rgba(15,27,48,.97) !important; }
-    .dark .card-shadow { box-shadow:0 4px 24px rgba(0,0,0,.4); }
+    /* ── Loader ─────────────────────────────────────────── */
+    #loader {
+      position:fixed; inset:0; background:var(--black);
+      display:flex; align-items:center; justify-content:center;
+      z-index:9999; transition:opacity .6s;
+    }
+    #loader.hidden { opacity:0; pointer-events:none; }
+    .loader-ring {
+      width:56px; height:56px;
+      border:3px solid rgba(250,165,65,.15);
+      border-top-color: var(--golden);
+      border-radius:50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
 
-    /* ─── Scroll-reveal animation ───────────────────────────── */
-    .reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease, transform .7s ease; }
+    /* ── Scroll reveal ──────────────────────────────────── */
+    .reveal { opacity:0; transform:translateY(36px); transition:opacity .75s ease, transform .75s ease; }
     .reveal.visible { opacity:1; transform:translateY(0); }
 
-    /* ─── Hero ──────────────────────────────────────────────── */
+    /* ── Navbar ─────────────────────────────────────────── */
+    #navbar { transition: background .3s, box-shadow .3s; }
+    #navbar.scrolled { background: rgba(0,0,0,.97); box-shadow: 0 2px 24px rgba(250,165,65,.08); }
+
+    .nav-link { position:relative; transition:color .2s; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:-4px; left:0;
+      width:0; height:2px; background:var(--golden);
+      transition:width .3s;
+    }
+    .nav-link:hover { color: var(--golden); }
+    .nav-link:hover::after, .nav-link.active::after { width:100%; }
+    .nav-link.active { color: var(--golden); }
+
+    /* ── Hero ───────────────────────────────────────────── */
     .hero-bg {
-      background: linear-gradient(135deg, #0f1b30 0%, #1a2e4a 45%, #0a3a50 100%);
-      position: relative;
-      overflow: hidden;
+      background: var(--black);
+      position: relative; overflow: hidden;
     }
     .hero-bg::before {
       content:'';
       position:absolute; inset:0;
       background: url('assets/image3.jpeg') center/cover no-repeat;
-      opacity:.18;
-      z-index:0;
+      opacity:.12; z-index:0;
     }
     .hero-overlay {
       position:absolute; inset:0;
-      background:linear-gradient(135deg,rgba(15,27,48,.9) 0%,rgba(26,46,74,.75) 60%,rgba(10,58,80,.6) 100%);
+      background: linear-gradient(135deg,
+        rgba(0,0,0,.97) 0%,
+        rgba(0,0,0,.85) 50%,
+        rgba(20,10,0,.9) 100%);
       z-index:1;
     }
 
-    /* ─── Animated gradient border for cards ───────────────── */
-    .gradient-border {
-      position:relative;
-      background:white;
-      border-radius:1rem;
+    /* Animated golden glow circles */
+    .glow-circle {
+      position:absolute; border-radius:50%;
+      background: radial-gradient(circle, rgba(250,165,65,.25) 0%, transparent 70%);
+      animation: pulse-glow 4s ease-in-out infinite;
+      pointer-events:none;
     }
-    .gradient-border::before {
-      content:'';
-      position:absolute; inset:-2px;
-      background:linear-gradient(135deg, #0d8f7e, #1a2e4a, #c9963b);
-      border-radius:calc(1rem + 2px);
-      z-index:-1;
-      opacity:0;
-      transition:opacity .3s;
+    @keyframes pulse-glow {
+      0%,100% { transform:scale(1); opacity:.6; }
+      50%      { transform:scale(1.15); opacity:1; }
     }
-    .gradient-border:hover::before { opacity:1; }
-    .dark .gradient-border { background:#152440; }
 
-    /* ─── Service icon circle ───────────────────────────────── */
-    .service-icon {
-      width:64px; height:64px;
-      border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.75rem;
+    /* golden text gradient */
+    .text-golden-grad {
+      background: linear-gradient(135deg, #FAA541 0%, #ffd280 50%, #FAA541 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    /* ── Section headings ───────────────────────────────── */
+    .section-badge {
+      display:inline-block;
+      padding:.35rem 1rem; border-radius:999px;
+      background:rgba(250,165,65,.12);
+      border:1px solid rgba(250,165,65,.3);
+      color: var(--golden);
+      font-size:.7rem; font-weight:700;
+      letter-spacing:.15em; text-transform:uppercase;
       margin-bottom:1rem;
     }
 
-    /* ─── Product tab system ────────────────────────────────── */
-    .tab-btn { transition:all .25s; }
+    /* ── Divider line ───────────────────────────────────── */
+    .golden-divider {
+      width:60px; height:3px;
+      background:linear-gradient(90deg, var(--golden), transparent);
+      border-radius:2px; margin:.75rem 0 1.5rem;
+    }
+    .golden-divider.center { margin-left:auto; margin-right:auto; }
+
+    /* ── Service cards ──────────────────────────────────── */
+    .service-card {
+      background: var(--gray);
+      border:1px solid rgba(250,165,65,.15);
+      border-radius:1rem;
+      padding:2rem;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .service-card:hover {
+      transform:translateY(-6px);
+      border-color: rgba(250,165,65,.6);
+      box-shadow: 0 12px 40px rgba(250,165,65,.12);
+    }
+    .service-icon-box {
+      width:60px; height:60px; border-radius:14px;
+      background: rgba(250,165,65,.12);
+      border:1px solid rgba(250,165,65,.25);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.6rem; margin-bottom:1.25rem;
+      transition: background .3s;
+    }
+    .service-card:hover .service-icon-box {
+      background: rgba(250,165,65,.25);
+    }
+
+    /* ── Stat card ──────────────────────────────────────── */
+    .stat-card {
+      background:rgba(250,165,65,.06);
+      border:1px solid rgba(250,165,65,.2);
+      border-radius:1rem; text-align:center;
+      transition:transform .3s, box-shadow .3s;
+    }
+    .stat-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 8px 30px rgba(250,165,65,.15);
+    }
+
+    /* ── Tab buttons ────────────────────────────────────── */
+    .tab-btn {
+      padding:.6rem 1.4rem; border-radius:999px;
+      border:1px solid rgba(250,165,65,.3);
+      color:rgba(255,255,255,.6); font-size:.85rem; font-weight:600;
+      transition:all .25s; background:transparent; cursor:pointer;
+    }
+    .tab-btn:hover { border-color:var(--golden); color:var(--golden); }
     .tab-btn.active {
-      background: linear-gradient(135deg,#0d8f7e,#1a2e4a);
-      color:white;
-      box-shadow:0 4px 15px rgba(13,143,126,.4);
+      background:var(--golden); color:var(--black);
+      border-color:var(--golden);
+      box-shadow:0 4px 18px rgba(250,165,65,.4);
     }
     .tab-panel { display:none; }
     .tab-panel.active { display:block; }
 
-    /* ─── Navbar link underline hover ───────────────────────── */
-    .nav-link { position:relative; }
-    .nav-link::after {
-      content:''; position:absolute; bottom:-4px; left:0;
-      width:0; height:2px;
-      background:linear-gradient(90deg,#0d8f7e,#c9963b);
-      transition:width .3s;
+    /* ── Product list item ──────────────────────────────── */
+    .prod-item {
+      display:flex; align-items:center; gap:.75rem;
+      padding:.6rem 0; border-bottom:1px solid rgba(255,255,255,.06);
+      color:rgba(255,255,255,.8); font-size:.95rem;
     }
-    .nav-link:hover::after, .nav-link.active::after { width:100%; }
-
-    /* ─── Floating particles (hero) ──────────────────────────── */
-    .particle {
-      position:absolute; border-radius:50%;
-      background:rgba(201,150,59,.15);
-      animation:float linear infinite;
-    }
-    @keyframes float {
-      0%   { transform:translateY(100vh) scale(0); opacity:0; }
-      10%  { opacity:1; }
-      90%  { opacity:.6; }
-      100% { transform:translateY(-10vh) scale(1.5); opacity:0; }
+    .prod-item::before {
+      content:''; width:6px; height:6px; border-radius:50%;
+      background:var(--golden); flex-shrink:0;
     }
 
-    /* ─── Stats counter ──────────────────────────────────────── */
-    .stat-card { transition:transform .3s; }
-    .stat-card:hover { transform:translateY(-4px); }
-
-    /* ─── Contact input focus ─────────────────────────────────── */
+    /* ── Contact input ──────────────────────────────────── */
+    .contact-input {
+      width:100%; padding:.8rem 1rem; border-radius:.75rem;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(250,165,65,.2);
+      color:white; font-size:.9rem; transition:all .25s;
+    }
+    .contact-input::placeholder { color:rgba(255,255,255,.3); }
     .contact-input:focus {
       outline:none;
-      border-color:#0d8f7e;
-      box-shadow:0 0 0 3px rgba(13,143,126,.2);
+      border-color:var(--golden);
+      background:rgba(250,165,65,.06);
+      box-shadow:0 0 0 3px rgba(250,165,65,.1);
     }
+    .contact-input option { background:#1a1a1a; color:white; }
 
-    /* ─── Divider wave ────────────────────────────────────────── */
-    .wave-divider { line-height:0; }
-    .wave-divider svg { display:block; }
-
-    /* ─── Scroll-to-top button ────────────────────────────────── */
+    /* ── Scroll-to-top ──────────────────────────────────── */
     #scrollTop {
       position:fixed; bottom:2rem; right:2rem; z-index:999;
       width:44px; height:44px; border-radius:50%;
-      background:linear-gradient(135deg,#0d8f7e,#1a2e4a);
-      color:white; border:none; cursor:pointer;
+      background:var(--golden); color:var(--black);
+      border:none; cursor:pointer;
       display:flex; align-items:center; justify-content:center;
-      box-shadow:0 4px 15px rgba(0,0,0,.3);
+      box-shadow:0 4px 18px rgba(250,165,65,.4);
       opacity:0; pointer-events:none;
       transition:opacity .3s, transform .3s;
     }
     #scrollTop.show { opacity:1; pointer-events:all; }
     #scrollTop:hover { transform:translateY(-3px); }
 
-    /* ─── Loader ───────────────────────────────────────────────── */
-    #loader {
-      position:fixed; inset:0; background:#0f1b30;
-      display:flex; align-items:center; justify-content:center;
-      z-index:9999; transition:opacity .5s;
+    /* ── Floating particles ─────────────────────────────── */
+    .particle {
+      position:absolute; border-radius:50%;
+      background:rgba(250,165,65,.15);
+      animation:floatUp linear infinite;
+      pointer-events:none;
     }
-    #loader.hidden { opacity:0; pointer-events:none; }
-    .loader-ring {
-      width:56px; height:56px; border:4px solid rgba(255,255,255,.1);
-      border-top-color:#0d8f7e; border-radius:50%;
-      animation:spin .8s linear infinite;
+    @keyframes floatUp {
+      0%   { transform:translateY(100vh) scale(0); opacity:0; }
+      10%  { opacity:.8; }
+      90%  { opacity:.4; }
+      100% { transform:translateY(-5vh) scale(1.2); opacity:0; }
     }
-    @keyframes spin { to { transform:rotate(360deg); } }
 
-    /* ─── Dark mode toggle btn ────────────────────────────────── */
-    #darkToggle { cursor:pointer; transition:transform .3s; }
-    #darkToggle:hover { transform:rotate(20deg); }
+    /* ── CTA band ───────────────────────────────────────── */
+    .cta-band {
+      background: linear-gradient(135deg, #1a0d00 0%, #0d0600 50%, #1a0d00 100%);
+      border-top:1px solid rgba(250,165,65,.2);
+      border-bottom:1px solid rgba(250,165,65,.2);
+      position:relative; overflow:hidden;
+    }
+    .cta-band::before {
+      content:'';
+      position:absolute; inset:0;
+      background:url('assets/image3.jpeg') center/cover no-repeat;
+      opacity:.06;
+    }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    footer {
+      background: #050505;
+      border-top:1px solid rgba(250,165,65,.15);
+    }
+
+    /* ── Gallery hover ──────────────────────────────────── */
+    .gallery-item { position:relative; overflow:hidden; border-radius:1rem; }
+    .gallery-item img { transition:transform .6s; }
+    .gallery-item:hover img { transform:scale(1.08); }
+    .gallery-item::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(250,165,65,.3) 0%, transparent 60%);
+      opacity:0; transition:opacity .3s;
+    }
+    .gallery-item:hover::after { opacity:1; }
+
+    /* ── Light section (cream) ──────────────────────────── */
+    .section-cream {
+      background: var(--cream);
+      color: var(--black);
+    }
+    .section-cream .section-badge {
+      background:rgba(0,0,0,.08);
+      border-color:rgba(0,0,0,.2);
+      color:#7a4800;
+    }
+    .section-cream .golden-divider {
+      background:linear-gradient(90deg, #7a4800, transparent);
+    }
+
+    /* ── Founder photo ring ─────────────────────────────── */
+    .founder-ring {
+      background: conic-gradient(var(--golden) 0%, rgba(250,165,65,.1) 60%, var(--golden) 100%);
+      padding: 3px; border-radius: 1.5rem;
+      animation: rotate-ring 6s linear infinite;
+    }
+    @keyframes rotate-ring {
+      to { filter: hue-rotate(20deg); }
+    }
   </style>
 </head>
 
-<body class="bg-white text-gray-800 font-sans antialiased">
+<body>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- PAGE LOADER                                              -->
-  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- LOADER -->
   <div id="loader">
     <div class="text-center">
       <div class="loader-ring mx-auto mb-4"></div>
-      <p class="text-white/60 text-sm tracking-widest uppercase">Loading…</p>
+      <div class="text-golden font-semibold tracking-widest text-xs uppercase" style="color:var(--golden)">MAK ASIA BD</div>
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- NAVBAR                                                  -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- NAVBAR                                                -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 md:h-20">
 
         <!-- Logo -->
-        <a href="#home" class="flex items-center gap-3 group">
-          <img src="assets/image1.png" alt="MAK ASIA BD Logo" class="h-10 w-auto object-contain"
+        <a href="#home" class="flex items-center gap-3">
+          <img src="assets/image1.png" alt="MAK ASIA BD Logo"
+               class="h-10 w-auto object-contain"
                onerror="this.style.display='none'" />
           <div>
             <span class="text-white font-serif font-bold text-lg leading-tight block">MAK ASIA BD</span>
-            <span class="text-teal-300 text-xs tracking-widest uppercase hidden sm:block">Buying House</span>
+            <span class="text-xs tracking-widest uppercase" style="color:var(--golden)">Buying House</span>
           </div>
         </a>
 
-        <!-- Desktop Nav -->
-        <div class="hidden md:flex items-center gap-6">
-          <a href="#home"     class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Home</a>
-          <a href="#about"    class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">About</a>
-          <a href="#services" class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Services</a>
-          <a href="#founder"  class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Team</a>
-          <a href="#products" class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Products</a>
-          <a href="#contact"  class="nav-link text-white/90 hover:text-white text-sm font-medium transition-colors">Contact</a>
-          <button id="darkToggle" title="Toggle dark mode"
-                  class="text-white/80 hover:text-white ml-2 text-xl">🌙</button>
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#home"     class="nav-link text-white/80 text-sm font-medium">Home</a>
+          <a href="#about"    class="nav-link text-white/80 text-sm font-medium">About</a>
+          <a href="#services" class="nav-link text-white/80 text-sm font-medium">Services</a>
+          <a href="#founder"  class="nav-link text-white/80 text-sm font-medium">Team</a>
+          <a href="#products" class="nav-link text-white/80 text-sm font-medium">Products</a>
+          <a href="#contact"  class="nav-link text-white/80 text-sm font-medium">Contact</a>
           <a href="#contact"
-             class="ml-2 px-5 py-2 rounded-full text-sm font-semibold
-                    bg-gradient-to-r from-teal-500 to-teal-700 text-white
-                    hover:shadow-lg hover:shadow-teal-500/30 hover:-translate-y-0.5 transition-all">
+             class="ml-2 px-5 py-2 rounded-full text-sm font-bold"
+             style="background:var(--golden); color:var(--black);">
             Get in Touch
           </a>
         </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden text-white p-2" aria-label="Toggle menu">
+        <!-- Mobile button -->
+        <button id="mobileMenuBtn" class="md:hidden text-white p-2">
           <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
@@ -242,157 +361,164 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-navy-900/97 backdrop-blur-md border-t border-white/10 px-4 pb-6 pt-2">
-      <div class="flex flex-col gap-4 mt-4">
-        <a href="#home"     class="text-white/90 font-medium py-1" onclick="closeMobile()">Home</a>
-        <a href="#about"    class="text-white/90 font-medium py-1" onclick="closeMobile()">About</a>
-        <a href="#services" class="text-white/90 font-medium py-1" onclick="closeMobile()">Services</a>
-        <a href="#founder"  class="text-white/90 font-medium py-1" onclick="closeMobile()">Team</a>
-        <a href="#products" class="text-white/90 font-medium py-1" onclick="closeMobile()">Products</a>
-        <a href="#contact"  class="text-white/90 font-medium py-1" onclick="closeMobile()">Contact</a>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t px-4 pb-6 pt-4"
+         style="background:rgba(0,0,0,.98); border-color:rgba(250,165,65,.2)">
+      <div class="flex flex-col gap-5">
+        <a href="#home"     class="text-white/80 font-medium" onclick="closeMobile()">Home</a>
+        <a href="#about"    class="text-white/80 font-medium" onclick="closeMobile()">About</a>
+        <a href="#services" class="text-white/80 font-medium" onclick="closeMobile()">Services</a>
+        <a href="#founder"  class="text-white/80 font-medium" onclick="closeMobile()">Team</a>
+        <a href="#products" class="text-white/80 font-medium" onclick="closeMobile()">Products</a>
+        <a href="#contact"  class="text-white/80 font-medium" onclick="closeMobile()">Contact</a>
         <a href="#contact"
-           class="mt-2 px-5 py-2 rounded-full text-sm font-semibold text-center
-                  bg-gradient-to-r from-teal-500 to-teal-700 text-white"
+           class="px-5 py-2.5 rounded-full font-bold text-center text-sm"
+           style="background:var(--golden); color:var(--black);"
            onclick="closeMobile()">Get in Touch</a>
       </div>
     </div>
   </nav>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- HERO SECTION                                            -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <section id="home" class="hero-bg min-h-screen flex items-center relative">
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- HERO                                                  -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="home" class="hero-bg min-h-screen flex items-center">
     <div class="hero-overlay"></div>
 
-    <!-- Floating particles -->
-    <div class="absolute inset-0 z-1 overflow-hidden pointer-events-none" id="particles"></div>
+    <!-- Glow blobs -->
+    <div class="glow-circle" style="width:500px;height:500px;top:-100px;left:-150px;"></div>
+    <div class="glow-circle" style="width:300px;height:300px;bottom:50px;right:-80px;animation-delay:2s;"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 w-full">
+    <!-- Particles -->
+    <div class="absolute inset-0 z-10 overflow-hidden pointer-events-none" id="particles"></div>
+
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-44 w-full">
       <div class="max-w-3xl">
+
         <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 text-xs font-semibold tracking-widest uppercase mb-6">
-          <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
+        <div class="section-badge mb-6">
+          <span class="inline-block w-1.5 h-1.5 rounded-full mr-2 align-middle animate-pulse"
+                style="background:var(--golden)"></span>
           Bangladesh Garments Buying House
         </div>
 
-        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-          MAK<br/>
-          <span class="bg-gradient-to-r from-teal-400 via-teal-300 to-gold-400 bg-clip-text text-transparent">
-            ASIA BD
-          </span>
+        <h1 class="font-serif font-bold leading-none mb-6"
+            style="font-size:clamp(3.5rem,9vw,7rem);">
+          <span class="text-white block">MAK</span>
+          <span class="text-golden-grad block">ASIA BD</span>
         </h1>
 
-        <p class="text-white/80 text-lg md:text-xl leading-relaxed mb-4 max-w-2xl">
-          A dynamic and reliable garments buying house in Bangladesh, bridging global buyers with local manufacturers through sourcing excellence, product development, and production management.
+        <p class="text-white/75 text-lg md:text-xl leading-relaxed mb-3 max-w-xl">
+          A dynamic and reliable garments buying house bridging global buyers with local manufacturers — through sourcing excellence, product development, and production management.
         </p>
 
-        <p class="text-gold-400 font-semibold text-sm tracking-wider uppercase mb-10">
+        <p class="text-sm font-bold tracking-widest uppercase mb-10" style="color:var(--golden)">
           Quality · Integrity · Timely Delivery
         </p>
 
         <div class="flex flex-wrap gap-4">
           <a href="#contact"
-             class="px-8 py-3.5 rounded-full font-semibold text-white
-                    bg-gradient-to-r from-teal-500 to-teal-700
-                    hover:shadow-xl hover:shadow-teal-500/30 hover:-translate-y-1 transition-all">
+             class="px-8 py-3.5 rounded-full font-bold text-sm hover:-translate-y-1 transition-all"
+             style="background:var(--golden); color:var(--black); box-shadow:0 6px 24px rgba(250,165,65,.4);">
             Get in Touch
           </a>
           <a href="#products"
-             class="px-8 py-3.5 rounded-full font-semibold text-white
-                    border border-white/30 hover:bg-white/10 hover:-translate-y-1 transition-all">
+             class="px-8 py-3.5 rounded-full font-bold text-sm text-white hover:-translate-y-1 transition-all"
+             style="border:2px solid rgba(250,165,65,.4);">
             View Products
           </a>
         </div>
       </div>
 
-      <!-- Hero stats -->
+      <!-- Stats -->
       <div class="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4 text-center">
-          <div class="text-3xl font-bold font-serif text-gold-400 mb-1">2024</div>
-          <div class="text-white/70 text-xs uppercase tracking-wider">Founded</div>
+        <div class="stat-card px-5 py-5">
+          <div class="font-serif font-bold text-3xl mb-1" style="color:var(--golden)">2024</div>
+          <div class="text-white/50 text-xs uppercase tracking-wider">Founded</div>
         </div>
-        <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4 text-center">
-          <div class="text-3xl font-bold font-serif text-gold-400 mb-1">4+</div>
-          <div class="text-white/70 text-xs uppercase tracking-wider">Core Services</div>
+        <div class="stat-card px-5 py-5">
+          <div class="font-serif font-bold text-3xl mb-1" style="color:var(--golden)">4+</div>
+          <div class="text-white/50 text-xs uppercase tracking-wider">Core Services</div>
         </div>
-        <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4 text-center">
-          <div class="text-3xl font-bold font-serif text-gold-400 mb-1">4</div>
-          <div class="text-white/70 text-xs uppercase tracking-wider">Product Lines</div>
+        <div class="stat-card px-5 py-5">
+          <div class="font-serif font-bold text-3xl mb-1" style="color:var(--golden)">4</div>
+          <div class="text-white/50 text-xs uppercase tracking-wider">Product Lines</div>
         </div>
-        <div class="stat-card bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-4 text-center">
-          <div class="text-3xl font-bold font-serif text-gold-400 mb-1">100%</div>
-          <div class="text-white/70 text-xs uppercase tracking-wider">Quality Focus</div>
+        <div class="stat-card px-5 py-5">
+          <div class="font-serif font-bold text-3xl mb-1" style="color:var(--golden)">100%</div>
+          <div class="text-white/50 text-xs uppercase tracking-wider">Quality Focus</div>
         </div>
       </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-      <div class="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
-        <div class="w-1 h-2 bg-white/60 rounded-full animate-pulse"></div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+      <div class="w-6 h-10 rounded-full flex justify-center pt-2"
+           style="border:2px solid rgba(250,165,65,.4);">
+        <div class="w-1 h-2 rounded-full animate-pulse" style="background:var(--golden)"></div>
       </div>
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- ABOUT US                                                -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <section id="about" class="py-24 bg-gray-50">
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ABOUT US  (cream bg)                                  -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="about" class="section-cream py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-        <!-- Image collage -->
+        <!-- Image -->
         <div class="reveal relative">
-          <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height:480px;">
+          <div class="rounded-3xl overflow-hidden shadow-2xl" style="height:480px; border:3px solid rgba(0,0,0,.1);">
             <img src="assets/image2.jpeg" alt="MAK ASIA BD Operations"
                  class="w-full h-full object-cover"
                  onerror="this.src='assets/image3.jpeg'" />
-            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent"></div>
           </div>
-          <!-- Floating badge -->
-          <div class="absolute -bottom-6 -right-4 md:-right-8 bg-white dark:bg-navy-800 rounded-2xl shadow-xl p-5 w-44">
-            <div class="text-3xl font-bold font-serif text-teal-600 mb-1">Since</div>
-            <div class="text-4xl font-bold font-serif text-navy-700 dark:text-white">2024</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Excellence in Apparel</div>
+          <!-- Badge -->
+          <div class="absolute -bottom-6 -right-4 md:-right-8 bg-black rounded-2xl shadow-2xl p-5 w-44"
+               style="border:1px solid rgba(250,165,65,.3)">
+            <div class="font-serif text-2xl font-bold mb-0.5" style="color:var(--golden)">Since</div>
+            <div class="font-serif text-4xl font-bold text-white">2024</div>
+            <div class="text-white/40 text-xs mt-1">Excellence in Apparel</div>
           </div>
-          <!-- Accent shape -->
-          <div class="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-teal-500/20 blur-2xl"></div>
+          <div class="absolute -top-4 -left-4 w-24 h-24 rounded-full blur-2xl opacity-60"
+               style="background:rgba(250,165,65,.2)"></div>
         </div>
 
         <!-- Text -->
         <div class="reveal">
-          <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
-            About Us
-          </div>
-          <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700 leading-tight mb-6">
+          <div class="section-badge">About Us</div>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight mb-2"
+              style="color:var(--black)">
             Your Trusted<br/>
-            <span class="text-teal-600">Sourcing Partner</span>
+            <span style="color:#7a4800">Sourcing Partner</span>
           </h2>
-          <p class="text-gray-600 text-lg leading-relaxed mb-6">
+          <div class="golden-divider" style="background:linear-gradient(90deg,#7a4800,transparent)"></div>
+
+          <p class="text-black/70 text-lg leading-relaxed mb-5">
             MAK ASIA BD is a dynamic and reliable garments buying house based in Bangladesh, specializing in sourcing, product development, and production management for international clients.
           </p>
-          <p class="text-gray-600 leading-relaxed mb-8">
+          <p class="text-black/60 leading-relaxed mb-8">
             We act as a bridge between global buyers and local manufacturers, ensuring quality, cost efficiency, and timely delivery. Our team brings deep industry knowledge and commitment to every partnership.
           </p>
 
-          <!-- Feature pills -->
+          <!-- Pills -->
           <div class="flex flex-wrap gap-3">
-            <span class="flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-sm font-medium border border-teal-100">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Quality Assurance
+            <span class="px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2"
+                  style="background:rgba(0,0,0,.08); color:#7a4800; border:1px solid rgba(0,0,0,.15)">
+              ✓ Quality Assurance
             </span>
-            <span class="flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-sm font-medium border border-teal-100">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Timely Delivery
+            <span class="px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2"
+                  style="background:rgba(0,0,0,.08); color:#7a4800; border:1px solid rgba(0,0,0,.15)">
+              ✓ Timely Delivery
             </span>
-            <span class="flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-sm font-medium border border-teal-100">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Cost Efficient
+            <span class="px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2"
+                  style="background:rgba(0,0,0,.08); color:#7a4800; border:1px solid rgba(0,0,0,.15)">
+              ✓ Cost Efficient
             </span>
-            <span class="flex items-center gap-2 px-4 py-2 rounded-full bg-teal-50 text-teal-700 text-sm font-medium border border-teal-100">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Sustainable Practices
+            <span class="px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2"
+                  style="background:rgba(0,0,0,.08); color:#7a4800; border:1px solid rgba(0,0,0,.15)">
+              ✓ Sustainable Practices
             </span>
           </div>
         </div>
@@ -400,43 +526,42 @@
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- VISION & MISSION                                        -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <section id="vision" class="py-24 bg-navy-700 relative overflow-hidden">
-    <!-- Background texture -->
-    <div class="absolute inset-0 opacity-5" style="background-image:url('assets/image4.png');background-size:cover;background-repeat:no-repeat;"></div>
-    <!-- Glowing circles -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- VISION & MISSION  (black bg)                          -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="vision" class="py-24" style="background:var(--black)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <div class="inline-block px-4 py-1 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 text-xs font-semibold tracking-widest uppercase mb-4">
-          Our Direction
-        </div>
+        <div class="section-badge">Our Direction</div>
         <h2 class="font-serif text-4xl md:text-5xl font-bold text-white">Vision &amp; Mission</h2>
+        <div class="golden-divider center"></div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
+
         <!-- Vision -->
-        <div class="reveal bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-10 hover:bg-white/10 transition-all group">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-teal-500/30">
-            🎯
-          </div>
+        <div class="reveal rounded-3xl p-10 relative overflow-hidden group"
+             style="background:var(--gray); border:1px solid rgba(250,165,65,.2)">
+          <div class="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10 blur-3xl group-hover:opacity-20 transition-opacity"
+               style="background:var(--golden)"></div>
+          <div class="text-4xl mb-5">🎯</div>
           <h3 class="font-serif text-2xl font-bold text-white mb-4">Our Vision</h3>
-          <p class="text-white/75 leading-relaxed text-lg">
-            To be a reliable sourcing partner in the apparel sector by offering excellence, innovation and sustainability — setting the benchmark for garments buying houses in Bangladesh.
+          <div class="golden-divider"></div>
+          <p class="text-white/65 leading-relaxed text-lg">
+            To be a reliable sourcing partner in the apparel sector by offering excellence, innovation and sustainability — setting the benchmark for garments buying houses in Bangladesh and beyond.
           </p>
         </div>
 
         <!-- Mission -->
-        <div class="reveal bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-10 hover:bg-white/10 transition-all group">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-gold-500/30">
-            🚀
-          </div>
+        <div class="reveal rounded-3xl p-10 relative overflow-hidden group"
+             style="background:var(--gray); border:1px solid rgba(250,165,65,.2); transition-delay:.15s">
+          <div class="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10 blur-3xl group-hover:opacity-20 transition-opacity"
+               style="background:var(--golden)"></div>
+          <div class="text-4xl mb-5">🚀</div>
           <h3 class="font-serif text-2xl font-bold text-white mb-4">Our Mission</h3>
-          <p class="text-white/75 leading-relaxed text-lg">
+          <div class="golden-divider"></div>
+          <p class="text-white/65 leading-relaxed text-lg">
             Offering garments of high quality at competitive price, ensuring timely delivery with stringent quality checks, and creating sustainable business relationships with buyers and sellers worldwide.
           </p>
         </div>
@@ -444,82 +569,73 @@
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- SERVICES                                                -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <section id="services" class="py-24 bg-white">
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SERVICES  (cream bg)                                  -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="services" class="section-cream py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16 reveal">
-        <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
-          What We Do
-        </div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700 mb-4">Our Services</h2>
-        <p class="text-gray-500 max-w-2xl mx-auto">End-to-end garments solutions from material sourcing to factory compliance — we handle every stage so your supply chain runs flawlessly.</p>
+        <div class="section-badge">What We Do</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-3" style="color:var(--black)">Our Services</h2>
+        <div class="golden-divider center" style="background:linear-gradient(90deg,#7a4800,transparent)"></div>
+        <p class="text-black/60 max-w-xl mx-auto">End-to-end garment solutions from material sourcing to factory compliance — every stage handled with precision.</p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <!-- Card 1 -->
-        <div class="reveal gradient-border card-shadow rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300 group cursor-default">
-          <div class="service-icon bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-colors mb-5">
-            🧵
-          </div>
-          <h3 class="font-serif text-lg font-bold text-navy-700 mb-3">Material &amp; Supplier Solutions</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            Cost-efficient sourcing with a focus on premium quality, trusted global partners, and carefully selected materials and trims.
+        <div class="reveal bg-black rounded-2xl p-7 hover:-translate-y-2 transition-all group cursor-default"
+             style="border:1px solid rgba(250,165,65,.2)">
+          <div class="service-icon-box">🧵</div>
+          <h3 class="font-serif text-lg font-bold text-white mb-3">Material &amp; Supplier Solutions</h3>
+          <p class="text-white/55 text-sm leading-relaxed">
+            Cost-efficient sourcing focused on premium quality, trusted global partners, and carefully selected materials and trims.
           </p>
-          <div class="mt-5 pt-5 border-t border-gray-100">
-            <span class="text-teal-600 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-              Learn more <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <div class="mt-5 pt-4" style="border-top:1px solid rgba(250,165,65,.15)">
+            <span class="text-xs font-bold uppercase tracking-wider flex items-center gap-1" style="color:var(--golden)">
+              Learn more →
             </span>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="reveal gradient-border card-shadow rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300 group cursor-default" style="transition-delay:.1s">
-          <div class="service-icon bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors mb-5">
-            📐
-          </div>
-          <h3 class="font-serif text-lg font-bold text-navy-700 mb-3">Coordination &amp; Product Development</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            From concept to completion, ensuring refined product development, strategic pricing, and seamless coordination at every stage.
+        <div class="reveal bg-black rounded-2xl p-7 hover:-translate-y-2 transition-all group cursor-default"
+             style="border:1px solid rgba(250,165,65,.2); transition-delay:.1s">
+          <div class="service-icon-box">📐</div>
+          <h3 class="font-serif text-lg font-bold text-white mb-3">Coordination &amp; Product Development</h3>
+          <p class="text-white/55 text-sm leading-relaxed">
+            From concept to completion — refined product development, strategic pricing, and seamless coordination at every stage.
           </p>
-          <div class="mt-5 pt-5 border-t border-gray-100">
-            <span class="text-teal-600 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-              Learn more <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <div class="mt-5 pt-4" style="border-top:1px solid rgba(250,165,65,.15)">
+            <span class="text-xs font-bold uppercase tracking-wider flex items-center gap-1" style="color:var(--golden)">
+              Learn more →
             </span>
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="reveal gradient-border card-shadow rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300 group cursor-default" style="transition-delay:.2s">
-          <div class="service-icon bg-green-50 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors mb-5">
-            🔍
-          </div>
-          <h3 class="font-serif text-lg font-bold text-navy-700 mb-3">Product Quality Management</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            Maintaining the highest standards through continuous monitoring, risk evaluation, and final verification at every production step.
+        <div class="reveal bg-black rounded-2xl p-7 hover:-translate-y-2 transition-all group cursor-default"
+             style="border:1px solid rgba(250,165,65,.2); transition-delay:.2s">
+          <div class="service-icon-box">🔍</div>
+          <h3 class="font-serif text-lg font-bold text-white mb-3">Product Quality Management</h3>
+          <p class="text-white/55 text-sm leading-relaxed">
+            Maintaining the highest standards through continuous monitoring, risk evaluation, and final verification at every step.
           </p>
-          <div class="mt-5 pt-5 border-t border-gray-100">
-            <span class="text-teal-600 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-              Learn more <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <div class="mt-5 pt-4" style="border-top:1px solid rgba(250,165,65,.15)">
+            <span class="text-xs font-bold uppercase tracking-wider flex items-center gap-1" style="color:var(--golden)">
+              Learn more →
             </span>
           </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="reveal gradient-border card-shadow rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300 group cursor-default" style="transition-delay:.3s">
-          <div class="service-icon bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors mb-5">
-            🏭
-          </div>
-          <h3 class="font-serif text-lg font-bold text-navy-700 mb-3">Factory Compliance &amp; Review</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
+        <div class="reveal bg-black rounded-2xl p-7 hover:-translate-y-2 transition-all group cursor-default"
+             style="border:1px solid rgba(250,165,65,.2); transition-delay:.3s">
+          <div class="service-icon-box">🏭</div>
+          <h3 class="font-serif text-lg font-bold text-white mb-3">Factory Compliance &amp; Review</h3>
+          <p class="text-white/55 text-sm leading-relaxed">
             Comprehensive factory assessments ensuring full compliance, safety, and technical excellence across all manufacturing partners.
           </p>
-          <div class="mt-5 pt-5 border-t border-gray-100">
-            <span class="text-teal-600 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-              Learn more <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <div class="mt-5 pt-4" style="border-top:1px solid rgba(250,165,65,.15)">
+            <span class="text-xs font-bold uppercase tracking-wider flex items-center gap-1" style="color:var(--golden)">
+              Learn more →
             </span>
           </div>
         </div>
@@ -528,17 +644,16 @@
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- FOUNDER SECTION                                         -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <section id="founder" class="py-24 bg-gray-50">
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FOUNDER  (black bg)                                   -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="founder" class="py-24" style="background:var(--black)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16 reveal">
-        <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
-          Leadership
-        </div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700">Founder &amp; CEO</h2>
+        <div class="section-badge">Leadership</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-white">Founder &amp; CEO</h2>
+        <div class="golden-divider center"></div>
       </div>
 
       <div class="grid lg:grid-cols-5 gap-12 items-center">
@@ -546,248 +661,260 @@
         <!-- Photo -->
         <div class="lg:col-span-2 reveal flex justify-center lg:justify-end">
           <div class="relative">
-            <div class="w-72 h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-2xl ring-4 ring-teal-200 ring-offset-4">
-              <img src="assets/image6.jpeg" alt="Md. Aliul Islam – Founder & CEO of MAK ASIA BD"
-                   class="w-full h-full object-cover object-top" />
+            <div class="founder-ring">
+              <div class="w-72 h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden"
+                   style="background:var(--gray)">
+                <img src="assets/image6.jpeg" alt="Md. Aliul Islam – Founder & CEO"
+                     class="w-full h-full object-cover object-top" />
+              </div>
             </div>
-            <!-- Decorative elements -->
-            <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-gold-400 rounded-2xl -z-10 opacity-60"></div>
-            <div class="absolute -top-4 -right-4 w-16 h-16 bg-teal-400 rounded-full -z-10 opacity-50"></div>
-
+            <!-- Gold accent squares -->
+            <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-xl opacity-40"
+                 style="background:var(--golden)"></div>
+            <div class="absolute -top-4 -right-4 w-10 h-10 rounded-full opacity-30"
+                 style="background:var(--golden)"></div>
             <!-- Name badge -->
-            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-lg px-5 py-3 text-center whitespace-nowrap">
-              <div class="font-semibold text-navy-700 text-sm">Md. Aliul Islam</div>
-              <div class="text-teal-600 text-xs font-medium">Founder &amp; CEO</div>
+            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 rounded-xl shadow-2xl px-5 py-3 text-center whitespace-nowrap"
+                 style="background:var(--gray); border:1px solid rgba(250,165,65,.3)">
+              <div class="font-semibold text-white text-sm">Md. Aliul Islam</div>
+              <div class="text-xs font-medium" style="color:var(--golden)">Founder &amp; CEO</div>
             </div>
           </div>
         </div>
 
         <!-- Message -->
         <div class="lg:col-span-3 reveal mt-12 lg:mt-0">
-          <div class="text-5xl text-teal-200 font-serif leading-none mb-2">"</div>
-          <h3 class="font-serif text-2xl md:text-3xl font-bold text-navy-700 mb-2">
+          <div class="text-6xl font-serif leading-none mb-2 opacity-30" style="color:var(--golden)">"</div>
+          <h3 class="font-serif text-2xl md:text-3xl font-bold text-white mb-2">
             Message from the Founder &amp; CEO
           </h3>
-          <p class="text-teal-600 font-medium mb-6">Welcome to MAK ASIA BD</p>
+          <p class="font-semibold mb-6" style="color:var(--golden)">Welcome to MAK ASIA BD</p>
+          <div class="golden-divider"></div>
 
-          <div class="space-y-4 text-gray-600 leading-relaxed">
+          <div class="space-y-4 text-white/65 leading-relaxed">
             <p>
               Since 2024, we have been committed to excellence in apparel sourcing and manufacturing, built on trust, integrity, and strong partnerships. We adapt to evolving trends and sustainable practices while ensuring high quality, timely delivery, and cost efficiency.
             </p>
             <p>
               We aim to build long-term relationships by providing reliable and tailored solutions to each of our valued clients worldwide.
             </p>
-            <p class="font-medium text-navy-700 italic">
+            <p class="font-semibold italic text-white/85">
               Thank you for considering MAK ASIA BD as your sourcing partner.
             </p>
           </div>
 
-          <div class="mt-8 flex items-center gap-4">
+          <div class="mt-8">
+            <div class="font-serif text-xl font-bold text-white">Md. Aliul Islam</div>
+            <div class="text-sm font-medium" style="color:var(--golden)">Founder &amp; CEO, MAK ASIA BD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- PRODUCTS  (cream bg)                                  -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="products" class="section-cream py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-12 reveal">
+        <div class="section-badge">Product Range</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-3" style="color:var(--black)">Our Products</h2>
+        <div class="golden-divider center" style="background:linear-gradient(90deg,#7a4800,transparent)"></div>
+        <p class="text-black/60 max-w-xl mx-auto">From everyday knitwear to premium outerwear — we source across all major apparel categories with uncompromising quality.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="reveal flex flex-wrap justify-center gap-3 mb-10">
+        <button class="tab-btn active" data-tab="knitwear">🧶 Knitwear</button>
+        <button class="tab-btn" data-tab="woven">👔 Woven Garments</button>
+        <button class="tab-btn" data-tab="outerwear">🧥 Outerwear</button>
+        <button class="tab-btn" data-tab="sweaters">🧣 Sweaters</button>
+      </div>
+
+      <!-- Knitwear -->
+      <div id="tab-knitwear" class="tab-panel active reveal">
+        <div class="grid md:grid-cols-2 gap-8 items-center bg-black rounded-3xl overflow-hidden"
+             style="border:1px solid rgba(250,165,65,.2)">
+          <div class="h-80 overflow-hidden">
+            <img src="assets/image8.jpeg" alt="Knitwear"
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                 onerror="this.src='assets/image7.jpeg'" />
+          </div>
+          <div class="p-8 md:p-10">
+            <h3 class="font-serif text-3xl font-bold text-white mb-2">Knitwear</h3>
+            <div class="golden-divider"></div>
+            <p class="text-white/60 mb-6">Premium knitwear crafted for comfort and style, suitable for every season and market.</p>
             <div>
-              <div class="font-serif text-xl font-bold text-navy-700">Md. Aliul Islam</div>
-              <div class="text-teal-600 text-sm font-medium">Founder &amp; CEO, MAK ASIA BD</div>
+              <div class="prod-item">T-Shirts &amp; Tank Tops</div>
+              <div class="prod-item">Polo Shirts</div>
+              <div class="prod-item">Leggings</div>
+              <div class="prod-item">Hoodies &amp; Jackets</div>
+              <div class="prod-item">All Kinds of Knitwear</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- PRODUCTS                                                -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <section id="products" class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <div class="text-center mb-12 reveal">
-        <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
-          Product Range
-        </div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700 mb-4">Our Products</h2>
-        <p class="text-gray-500 max-w-2xl mx-auto">From everyday knitwear to premium outerwear — we source across all major apparel categories with uncompromising quality standards.</p>
-      </div>
-
-      <!-- Product Tabs -->
-      <div class="reveal flex flex-wrap justify-center gap-3 mb-10">
-        <button class="tab-btn active px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 text-gray-600 hover:border-teal-500 transition-all"
-                data-tab="knitwear">🧶 Knitwear</button>
-        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 text-gray-600 hover:border-teal-500 transition-all"
-                data-tab="woven">👔 Woven Garments</button>
-        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 text-gray-600 hover:border-teal-500 transition-all"
-                data-tab="outerwear">🧥 Outerwear</button>
-        <button class="tab-btn px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-200 text-gray-600 hover:border-teal-500 transition-all"
-                data-tab="sweaters">🧣 Sweaters</button>
-      </div>
-
-      <!-- Tab Panels -->
-      <div id="tab-knitwear" class="tab-panel active reveal">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div class="rounded-3xl overflow-hidden shadow-xl h-80">
-            <img src="assets/image8.jpeg" alt="Knitwear Products"
-                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                 onerror="this.src='assets/image7.jpeg'" />
-          </div>
-          <div>
-            <h3 class="font-serif text-3xl font-bold text-navy-700 mb-4">Knitwear</h3>
-            <p class="text-gray-600 mb-6">Premium knitwear crafted for comfort and style, suitable for every season and market segment.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> T-Shirts &amp; Tank Tops</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Polo Shirts</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Leggings</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Hoodies &amp; Jackets</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> All Kinds of Knitwear</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
+      <!-- Woven -->
       <div id="tab-woven" class="tab-panel reveal">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div class="rounded-3xl overflow-hidden shadow-xl h-80">
+        <div class="grid md:grid-cols-2 gap-8 items-center bg-black rounded-3xl overflow-hidden"
+             style="border:1px solid rgba(250,165,65,.2)">
+          <div class="h-80 overflow-hidden">
             <img src="assets/image9.jpeg" alt="Woven Garments"
-                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                 onerror="this.src='assets/image7.jpeg'" />
-          </div>
-          <div>
-            <h3 class="font-serif text-3xl font-bold text-navy-700 mb-4">Woven Garments</h3>
-            <p class="text-gray-600 mb-6">Precision-crafted woven garments for formal, casual, and workwear markets with superior fabric selection.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Shirts</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Ladies' Blouses</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Uniforms</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Pants – Denim &amp; Non-Denim</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-outerwear" class="tab-panel reveal">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div class="rounded-3xl overflow-hidden shadow-xl h-80">
-            <img src="assets/image7.jpeg" alt="Outerwear Products"
                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
           </div>
-          <div>
-            <h3 class="font-serif text-3xl font-bold text-navy-700 mb-4">Outerwear</h3>
-            <p class="text-gray-600 mb-6">High-performance outerwear built for protection and style across all climate zones and market segments.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Jackets</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Hoodies</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Coats</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Winter Wear</li>
-            </ul>
+          <div class="p-8 md:p-10">
+            <h3 class="font-serif text-3xl font-bold text-white mb-2">Woven Garments</h3>
+            <div class="golden-divider"></div>
+            <p class="text-white/60 mb-6">Precision-crafted woven garments for formal, casual, and workwear markets.</p>
+            <div>
+              <div class="prod-item">Shirts</div>
+              <div class="prod-item">Ladies' Blouses</div>
+              <div class="prod-item">Uniforms</div>
+              <div class="prod-item">Pants – Denim &amp; Non-Denim</div>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- Outerwear -->
+      <div id="tab-outerwear" class="tab-panel reveal">
+        <div class="grid md:grid-cols-2 gap-8 items-center bg-black rounded-3xl overflow-hidden"
+             style="border:1px solid rgba(250,165,65,.2)">
+          <div class="h-80 overflow-hidden">
+            <img src="assets/image7.jpeg" alt="Outerwear"
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div class="p-8 md:p-10">
+            <h3 class="font-serif text-3xl font-bold text-white mb-2">Outerwear</h3>
+            <div class="golden-divider"></div>
+            <p class="text-white/60 mb-6">High-performance outerwear built for protection and style across all climates.</p>
+            <div>
+              <div class="prod-item">Jackets</div>
+              <div class="prod-item">Hoodies</div>
+              <div class="prod-item">Coats</div>
+              <div class="prod-item">Winter Wear</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sweaters -->
       <div id="tab-sweaters" class="tab-panel reveal">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div class="rounded-3xl overflow-hidden shadow-xl h-80">
-            <img src="assets/image12.png" alt="Sweaters Products"
+        <div class="grid md:grid-cols-2 gap-8 items-center bg-black rounded-3xl overflow-hidden"
+             style="border:1px solid rgba(250,165,65,.2)">
+          <div class="h-80 overflow-hidden">
+            <img src="assets/image12.png" alt="Sweaters"
                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                  onerror="this.src='assets/image11.png'" />
           </div>
-          <div>
-            <h3 class="font-serif text-3xl font-bold text-navy-700 mb-4">Sweaters</h3>
-            <p class="text-gray-600 mb-6">Cozy, premium-quality knitwear sweaters crafted for warmth, comfort, and timeless fashion appeal.</p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Pullovers</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Cardigans</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> Knit Sweaters</li>
-              <li class="flex items-center gap-3 text-gray-700"><span class="w-2 h-2 rounded-full bg-teal-500"></span> All Kinds of Sweaters</li>
-            </ul>
+          <div class="p-8 md:p-10">
+            <h3 class="font-serif text-3xl font-bold text-white mb-2">Sweaters</h3>
+            <div class="golden-divider"></div>
+            <p class="text-white/60 mb-6">Premium-quality knitwear sweaters crafted for warmth, comfort, and timeless style.</p>
+            <div>
+              <div class="prod-item">Pullovers</div>
+              <div class="prod-item">Cardigans</div>
+              <div class="prod-item">Knit Sweaters</div>
+              <div class="prod-item">All Kinds of Sweaters</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Product Gallery -->
-      <div class="mt-16 reveal">
-        <h3 class="font-serif text-2xl font-bold text-navy-700 text-center mb-8">Product Showcase</h3>
+      <!-- Gallery -->
+      <div class="mt-14 reveal">
+        <h3 class="font-serif text-2xl font-bold text-center mb-8" style="color:var(--black)">Product Showcase</h3>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div class="rounded-2xl overflow-hidden shadow-md aspect-square group">
-            <img src="assets/image7.jpeg" alt="Knitwear" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="gallery-item aspect-square shadow-md">
+            <img src="assets/image7.jpeg" alt="Product 1" class="w-full h-full object-cover" />
           </div>
-          <div class="rounded-2xl overflow-hidden shadow-md aspect-square group">
-            <img src="assets/image8.jpeg" alt="Woven" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="gallery-item aspect-square shadow-md">
+            <img src="assets/image8.jpeg" alt="Product 2" class="w-full h-full object-cover" />
           </div>
-          <div class="rounded-2xl overflow-hidden shadow-md aspect-square group">
-            <img src="assets/image9.jpeg" alt="Outerwear" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="gallery-item aspect-square shadow-md">
+            <img src="assets/image9.jpeg" alt="Product 3" class="w-full h-full object-cover" />
           </div>
-          <div class="rounded-2xl overflow-hidden shadow-md aspect-square group">
-            <img src="assets/image18.jpeg" alt="Sweaters" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="gallery-item aspect-square shadow-md">
+            <img src="assets/image18.jpeg" alt="Product 4" class="w-full h-full object-cover" />
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- WHY CHOOSE US (CTA BAND)                                -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <section class="py-20 bg-gradient-to-r from-teal-600 via-teal-700 to-navy-700 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10" style="background-image:url('assets/image3.jpeg');background-size:cover;"></div>
-    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- CTA BAND                                              -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="cta-band py-20">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 text-center reveal">
+      <div class="section-badge mb-4">Ready to Partner?</div>
       <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-4">
-        Ready to Partner with Us?
+        Let's Build Something<br/>
+        <span class="text-golden-grad">Great Together</span>
       </h2>
-      <p class="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+      <p class="text-white/60 text-lg mb-10 max-w-xl mx-auto">
         Join global buyers who trust MAK ASIA BD for reliable, high-quality garment sourcing from Bangladesh.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="#contact"
-           class="px-8 py-3.5 rounded-full font-semibold text-teal-700 bg-white
-                  hover:shadow-xl hover:-translate-y-1 transition-all">
+           class="px-8 py-3.5 rounded-full font-bold text-sm hover:-translate-y-1 transition-all"
+           style="background:var(--golden); color:var(--black); box-shadow:0 6px 24px rgba(250,165,65,.3)">
           Contact Us Today
         </a>
         <a href="mailto:aliul@makasiabd.com"
-           class="px-8 py-3.5 rounded-full font-semibold text-white border-2 border-white/60
-                  hover:bg-white/10 hover:-translate-y-1 transition-all">
+           class="px-8 py-3.5 rounded-full font-bold text-sm text-white hover:-translate-y-1 transition-all"
+           style="border:2px solid rgba(250,165,65,.4)">
           Send Email
         </a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- CONTACT                                                 -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <section id="contact" class="py-24 bg-gray-50">
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- CONTACT  (black bg)                                   -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <section id="contact" class="py-24" style="background:var(--black)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16 reveal">
-        <div class="inline-block px-4 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold tracking-widest uppercase mb-4">
-          Reach Out
-        </div>
-        <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-700 mb-4">Contact Us</h2>
-        <p class="text-gray-500 max-w-xl mx-auto">We're ready to discuss your sourcing requirements. Reach out and let's build something great together.</p>
+        <div class="section-badge">Reach Out</div>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-white">Contact Us</h2>
+        <div class="golden-divider center"></div>
+        <p class="text-white/50 max-w-xl mx-auto">We're ready to discuss your sourcing requirements. Let's build something great together.</p>
       </div>
 
       <div class="grid lg:grid-cols-5 gap-12">
 
-        <!-- Contact Info -->
+        <!-- Info -->
         <div class="lg:col-span-2 reveal space-y-6">
+
           <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl flex-shrink-0">📞</div>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                 style="background:rgba(250,165,65,.12); border:1px solid rgba(250,165,65,.3)">📞</div>
             <div>
-              <div class="font-semibold text-navy-700 mb-1">Phone</div>
-              <a href="tel:+8801730426711" class="text-teal-600 hover:underline">+880 1730 426711</a>
+              <div class="font-semibold text-white mb-1">Phone</div>
+              <a href="tel:+8801730426711" class="hover:underline" style="color:var(--golden)">+880 1730 426711</a>
             </div>
           </div>
 
           <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl flex-shrink-0">✉️</div>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                 style="background:rgba(250,165,65,.12); border:1px solid rgba(250,165,65,.3)">✉️</div>
             <div>
-              <div class="font-semibold text-navy-700 mb-1">Email</div>
-              <a href="mailto:aliul@makasiabd.com" class="text-teal-600 hover:underline break-all">aliul@makasiabd.com</a>
+              <div class="font-semibold text-white mb-1">Email</div>
+              <a href="mailto:aliul@makasiabd.com" class="hover:underline break-all" style="color:var(--golden)">aliul@makasiabd.com</a>
             </div>
           </div>
 
           <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl flex-shrink-0">📍</div>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
+                 style="background:rgba(250,165,65,.12); border:1px solid rgba(250,165,65,.3)">📍</div>
             <div>
-              <div class="font-semibold text-navy-700 mb-1">Address</div>
-              <p class="text-gray-600 leading-relaxed">
+              <div class="font-semibold text-white mb-1">Address</div>
+              <p class="text-white/55 leading-relaxed">
                 House-05, Badaldi Main Road,<br/>
                 Turag, Uttara, Dhaka-1230,<br/>
                 Bangladesh
@@ -795,8 +922,8 @@
             </div>
           </div>
 
-          <!-- Map embed placeholder -->
-          <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm mt-6" style="height:220px;">
+          <!-- Map -->
+          <div class="rounded-2xl overflow-hidden mt-4" style="height:200px; border:1px solid rgba(250,165,65,.2)">
             <iframe
               title="MAK ASIA BD Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.4!2d90.397!3d23.888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDUzJzE2LjgiTiA5MMKwMjMnNDkuMiJF!5e0!3m2!1sen!2sbd!4v1"
@@ -806,29 +933,27 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
+        <!-- Form -->
         <div class="lg:col-span-3 reveal">
-          <form id="contactForm" class="bg-white rounded-3xl shadow-lg p-8 md:p-10 space-y-5">
+          <form id="contactForm" class="rounded-3xl p-8 md:p-10 space-y-5"
+                style="background:var(--gray); border:1px solid rgba(250,165,65,.2)">
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1.5">Your Name *</label>
-                <input type="text" placeholder="John Smith" required
-                       class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all" />
+                <label class="block text-sm font-medium text-white/70 mb-1.5">Your Name *</label>
+                <input type="text" placeholder="John Smith" required class="contact-input" />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1.5">Company Name</label>
-                <input type="text" placeholder="Your Company Ltd."
-                       class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all" />
+                <label class="block text-sm font-medium text-white/70 mb-1.5">Company Name</label>
+                <input type="text" placeholder="Your Company Ltd." class="contact-input" />
               </div>
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Email Address *</label>
-              <input type="email" placeholder="you@company.com" required
-                     class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all" />
+              <label class="block text-sm font-medium text-white/70 mb-1.5">Email Address *</label>
+              <input type="email" placeholder="you@company.com" required class="contact-input" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Product Interest</label>
-              <select class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all bg-white">
+              <label class="block text-sm font-medium text-white/70 mb-1.5">Product Interest</label>
+              <select class="contact-input">
                 <option value="">Select a product category</option>
                 <option>Knitwear</option>
                 <option>Woven Garments</option>
@@ -838,17 +963,16 @@
               </select>
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Message *</label>
-              <textarea rows="5" placeholder="Tell us about your sourcing requirements…" required
-                        class="contact-input w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm transition-all resize-none"></textarea>
+              <label class="block text-sm font-medium text-white/70 mb-1.5">Message *</label>
+              <textarea rows="5" placeholder="Tell us about your sourcing requirements…"
+                        required class="contact-input resize-none"></textarea>
             </div>
             <button type="submit"
-                    class="w-full py-3.5 rounded-xl font-semibold text-white
-                           bg-gradient-to-r from-teal-500 to-teal-700
-                           hover:shadow-lg hover:shadow-teal-500/30 hover:-translate-y-0.5 transition-all">
+                    class="w-full py-3.5 rounded-xl font-bold text-sm hover:-translate-y-0.5 transition-all"
+                    style="background:var(--golden); color:var(--black); box-shadow:0 6px 24px rgba(250,165,65,.3)">
               Send Message ✈️
             </button>
-            <p id="formMsg" class="text-center text-sm text-teal-600 hidden font-medium">
+            <p id="formMsg" class="text-center text-sm font-medium hidden" style="color:var(--golden)">
               ✅ Thank you! We'll get back to you shortly.
             </p>
           </form>
@@ -857,10 +981,10 @@
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- FOOTER                                                  -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <footer class="bg-navy-700 text-white">
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FOOTER                                                -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <footer>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
@@ -870,47 +994,49 @@
             <img src="assets/image1.png" alt="MAK ASIA BD" class="h-10 w-auto object-contain"
                  onerror="this.style.display='none'" />
             <div>
-              <div class="font-serif font-bold text-xl">MAK ASIA BD</div>
-              <div class="text-teal-400 text-xs tracking-wider">Garments Buying House</div>
+              <div class="font-serif font-bold text-xl text-white">MAK ASIA BD</div>
+              <div class="text-xs tracking-wider" style="color:var(--golden)">Garments Buying House</div>
             </div>
           </div>
-          <p class="text-white/60 text-sm leading-relaxed max-w-xs">
+          <p class="text-white/40 text-sm leading-relaxed max-w-xs">
             A dynamic and reliable garments buying house based in Bangladesh — your trusted bridge between global buyers and local manufacturers.
           </p>
           <div class="mt-5 flex gap-3">
             <a href="mailto:aliul@makasiabd.com"
-               class="w-9 h-9 rounded-full bg-white/10 hover:bg-teal-500 flex items-center justify-center transition-colors text-sm"
+               class="w-9 h-9 rounded-full flex items-center justify-center transition-colors text-sm"
+               style="background:rgba(250,165,65,.12); border:1px solid rgba(250,165,65,.25)"
                title="Email">✉️</a>
             <a href="tel:+8801730426711"
-               class="w-9 h-9 rounded-full bg-white/10 hover:bg-teal-500 flex items-center justify-center transition-colors text-sm"
+               class="w-9 h-9 rounded-full flex items-center justify-center transition-colors text-sm"
+               style="background:rgba(250,165,65,.12); border:1px solid rgba(250,165,65,.25)"
                title="Phone">📞</a>
           </div>
         </div>
 
-        <!-- Quick Links -->
+        <!-- Links -->
         <div>
-          <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-4">Quick Links</h4>
-          <ul class="space-y-2 text-sm text-white/60">
-            <li><a href="#home"     class="hover:text-teal-300 transition-colors">Home</a></li>
-            <li><a href="#about"    class="hover:text-teal-300 transition-colors">About Us</a></li>
-            <li><a href="#services" class="hover:text-teal-300 transition-colors">Our Services</a></li>
-            <li><a href="#founder"  class="hover:text-teal-300 transition-colors">Leadership</a></li>
-            <li><a href="#products" class="hover:text-teal-300 transition-colors">Our Products</a></li>
-            <li><a href="#contact"  class="hover:text-teal-300 transition-colors">Contact</a></li>
+          <h4 class="font-semibold text-xs uppercase tracking-wider text-white/50 mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-sm text-white/40">
+            <li><a href="#home"     class="hover:text-yellow-400 transition-colors">Home</a></li>
+            <li><a href="#about"    class="hover:text-yellow-400 transition-colors">About Us</a></li>
+            <li><a href="#services" class="hover:text-yellow-400 transition-colors">Our Services</a></li>
+            <li><a href="#founder"  class="hover:text-yellow-400 transition-colors">Leadership</a></li>
+            <li><a href="#products" class="hover:text-yellow-400 transition-colors">Our Products</a></li>
+            <li><a href="#contact"  class="hover:text-yellow-400 transition-colors">Contact</a></li>
           </ul>
         </div>
 
         <!-- Contact -->
         <div>
-          <h4 class="font-semibold text-sm uppercase tracking-wider text-white/80 mb-4">Contact</h4>
-          <ul class="space-y-3 text-sm text-white/60">
+          <h4 class="font-semibold text-xs uppercase tracking-wider text-white/50 mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm text-white/40">
             <li class="flex items-start gap-2">
               <span>📞</span>
-              <a href="tel:+8801730426711" class="hover:text-teal-300 transition-colors">+880 1730 426711</a>
+              <a href="tel:+8801730426711" class="hover:text-yellow-400 transition-colors">+880 1730 426711</a>
             </li>
             <li class="flex items-start gap-2">
               <span>✉️</span>
-              <a href="mailto:aliul@makasiabd.com" class="hover:text-teal-300 transition-colors break-all">aliul@makasiabd.com</a>
+              <a href="mailto:aliul@makasiabd.com" class="hover:text-yellow-400 transition-colors break-all">aliul@makasiabd.com</a>
             </li>
             <li class="flex items-start gap-2">
               <span>📍</span>
@@ -920,13 +1046,10 @@
         </div>
       </div>
 
-      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-white/40 text-sm text-center">
-          &copy; 2024–2026 MAK ASIA BD. All rights reserved.
-        </p>
-        <p class="text-white/30 text-xs">
-          Garments Buying House · Bangladesh
-        </p>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+           style="border-top:1px solid rgba(250,165,65,.1)">
+        <p class="text-white/25 text-sm">&copy; 2024–2026 MAK ASIA BD. All rights reserved.</p>
+        <p class="text-white/20 text-xs">Garments Buying House · Bangladesh</p>
       </div>
     </div>
   </footer>
@@ -934,47 +1057,26 @@
   <!-- Scroll-to-top -->
   <button id="scrollTop" title="Back to top">
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/>
     </svg>
   </button>
 
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- JAVASCRIPT                                              -->
-  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- JAVASCRIPT                                            -->
+  <!-- ══════════════════════════════════════════════════════ -->
   <script>
-    /* ── Loader ─────────────────────────────────────────── */
+    /* Loader */
     window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      setTimeout(() => loader.classList.add('hidden'), 600);
+      setTimeout(() => document.getElementById('loader').classList.add('hidden'), 600);
     });
 
-    /* ── Dark mode ──────────────────────────────────────── */
-    const html = document.documentElement;
-    const toggle = document.getElementById('darkToggle');
-    if (localStorage.getItem('dark') === '1') {
-      html.classList.add('dark');
-      toggle.textContent = '☀️';
-    }
-    toggle.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      localStorage.setItem('dark', isDark ? '1' : '0');
-      toggle.textContent = isDark ? '☀️' : '🌙';
-    });
-
-    /* ── Sticky navbar ──────────────────────────────────── */
+    /* Sticky navbar */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        navbar.classList.remove('bg-transparent');
-        navbar.classList.add('bg-navy-900/97', 'backdrop-blur-md', 'shadow-md');
-      } else {
-        navbar.classList.add('bg-transparent');
-        navbar.classList.remove('bg-navy-900/97', 'backdrop-blur-md', 'shadow-md');
-      }
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    /* ── Mobile menu ────────────────────────────────────── */
+    /* Mobile menu */
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu    = document.getElementById('mobileMenu');
     const menuIcon      = document.getElementById('menuIcon');
@@ -990,34 +1092,31 @@
       closeIcon.classList.add('hidden');
     }
 
-    /* ── Scroll-to-top ──────────────────────────────────── */
+    /* Scroll-to-top */
     const scrollTopBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
       scrollTopBtn.classList.toggle('show', window.scrollY > 400);
     });
-    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
-    /* ── Scroll reveal ──────────────────────────────────── */
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
+    /* Scroll reveal */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin:'0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    /* ── Product tabs ───────────────────────────────────── */
-    const tabBtns   = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    tabBtns.forEach(btn => {
+    /* Product tabs */
+    document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        tabPanels.forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
       });
     });
 
-    /* ── Contact form ───────────────────────────────────── */
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
+    /* Contact form */
+    document.getElementById('contactForm').addEventListener('submit', e => {
       e.preventDefault();
       const msg = document.getElementById('formMsg');
       msg.classList.remove('hidden');
@@ -1025,34 +1124,25 @@
       setTimeout(() => msg.classList.add('hidden'), 5000);
     });
 
-    /* ── Floating particles ─────────────────────────────── */
-    const particleContainer = document.getElementById('particles');
-    for (let i = 0; i < 12; i++) {
+    /* Floating particles */
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 14; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
-      const size = Math.random() * 30 + 10;
-      p.style.cssText = `
-        width:${size}px; height:${size}px;
-        left:${Math.random() * 100}%;
-        animation-duration:${Math.random() * 15 + 10}s;
-        animation-delay:${Math.random() * 10}s;
-      `;
-      particleContainer.appendChild(p);
+      const size = Math.random() * 25 + 8;
+      p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;`;
+      container.appendChild(p);
     }
 
-    /* ── Active nav link on scroll ──────────────────────── */
+    /* Active nav */
     const sections = document.querySelectorAll('section[id]');
-    const navLinks  = document.querySelectorAll('.nav-link');
     window.addEventListener('scroll', () => {
       let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 100) current = s.id;
-      });
-      navLinks.forEach(l => {
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+      document.querySelectorAll('.nav-link').forEach(l => {
         l.classList.toggle('active', l.getAttribute('href') === '#' + current);
       });
     });
   </script>
-
 </body>
 </html>
