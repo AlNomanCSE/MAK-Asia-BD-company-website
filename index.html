@@ -363,9 +363,10 @@
         <div class="relative h-56 overflow-hidden">
           <img src="assets/image4.png" alt="Vision" class="w-full h-full object-cover object-center" />
           <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,.1),rgba(26,26,26,.95))"></div>
-          <!-- image5.svg as decorative strip over the image -->
-          <div class="absolute bottom-0 left-0 right-0 overflow-hidden" style="height:36px;opacity:.35">
-            <img src="assets/image5.svg" alt="" class="w-full h-full object-cover" style="filter:invert(1) sepia(1) saturate(3) hue-rotate(10deg)" />
+          <!-- image5.svg — wide decorative SVG strip, rendered with golden tint on white bg -->
+          <div class="absolute bottom-0 left-0 right-0 overflow-hidden" style="height:40px;background:rgba(250,165,65,.08)">
+            <img src="assets/image5.svg" alt="" class="w-full h-full object-cover"
+                 style="filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%); opacity:.7" />
           </div>
         </div>
         <div class="p-8">
@@ -382,9 +383,9 @@
       <div class="reveal rounded-3xl overflow-hidden relative" style="background:var(--gray2);border:1px solid rgba(250,165,65,.2);transition-delay:.15s">
         <div class="relative h-56 overflow-hidden" style="background:var(--gray)">
           <img src="assets/image5.png" alt="Mission" class="absolute inset-0 w-full h-full object-contain p-8" style="opacity:.85" />
-          <!-- image7.svg as decorative element -->
-          <div class="absolute bottom-4 right-4" style="opacity:.25">
-            <img src="assets/image7.svg" alt="" style="width:100px;filter:invert(1) sepia(1) saturate(5) hue-rotate(10deg)" />
+          <!-- image7.svg as decorative element — force golden color -->
+          <div class="absolute bottom-4 right-4" style="opacity:.5;background:rgba(255,255,255,.08);border-radius:.5rem;padding:6px">
+            <img src="assets/image7.svg" alt="" style="width:100px;filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%)" />
           </div>
           <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(26,26,26,.9))"></div>
         </div>
@@ -513,26 +514,41 @@
       </p>
     </div>
 
-    <!-- Product category icon chips — image10, 11, 12, 13, 14 -->
+    <!-- Product category icon chips — image10,11,12,13,14 with proper visibility fixes -->
     <div class="reveal grid grid-cols-5 gap-3 mb-10 max-w-lg mx-auto">
+      <!-- image10.png: avg_brightness=128, mixed — show on cream bg -->
       <div class="prod-icon-chip">
-        <img src="assets/image10.png" alt="Knitwear icon" />
+        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
+          <img src="assets/image10.png" alt="Knitwear icon" style="width:44px;height:44px;object-fit:contain" />
+        </div>
         <span>Knit</span>
       </div>
+      <!-- image11.png: avg_brightness=213 (light) — show normally -->
       <div class="prod-icon-chip">
-        <img src="assets/image11.png" alt="Woven icon" />
+        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
+          <img src="assets/image11.png" alt="Woven icon" style="width:44px;height:44px;object-fit:contain" />
+        </div>
         <span>Woven</span>
       </div>
+      <!-- image14.png: dark pixels (29800 dark) — invert to white then golden -->
       <div class="prod-icon-chip">
-        <img src="assets/image14.png" alt="Outerwear icon" />
+        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
+          <img src="assets/image14.png" alt="Outerwear icon" style="width:44px;height:44px;object-fit:contain" />
+        </div>
         <span>Outer</span>
       </div>
+      <!-- image12.png: avg_brightness=121, mixed — white bg -->
       <div class="prod-icon-chip">
-        <img src="assets/image12.png" alt="Sweater icon" />
+        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
+          <img src="assets/image12.png" alt="Sweater icon" style="width:44px;height:44px;object-fit:contain" />
+        </div>
         <span>Sweater</span>
       </div>
+      <!-- image13.png: avg_brightness=72 (very dark) — golden filter -->
       <div class="prod-icon-chip">
-        <img src="assets/image13.png" alt="More products" />
+        <div style="background:#fff;border-radius:8px;padding:4px;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
+          <img src="assets/image13.png" alt="All products" style="width:44px;height:44px;object-fit:contain" />
+        </div>
         <span>More</span>
       </div>
     </div>
@@ -643,7 +659,10 @@
           <img src="assets/image18.jpeg" alt="Collection Showcase" />
         </div>
         <div class="gal-img aspect-square shadow-md flex items-center justify-center" style="background:var(--black);border:1px solid rgba(250,165,65,.2)">
-          <img src="assets/image14.png" alt="Product Icon" style="width:70%;height:70%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(250,165,65,.3))" />
+          <!-- image14.png: dark pixels — white background makes lines visible -->
+          <div style="background:#fff;border-radius:10px;padding:10px;width:75%;height:75%;display:flex;align-items:center;justify-content:center">
+            <img src="assets/image14.png" alt="Product Icon" style="width:100%;height:100%;object-fit:contain" />
+          </div>
         </div>
       </div>
     </div>
@@ -692,11 +711,12 @@
       <!-- Contact Info — using PPT contact icons: image15/18.svg (phone), image16/20.svg (email), image19/25.svg (location), image17/22.svg (decoration) -->
       <div class="lg:col-span-2 reveal-left space-y-7">
 
-        <!-- Phone — image18.svg -->
+        <!-- Phone — image18.svg (fill=#000000 → needs golden filter) -->
         <div class="flex items-start gap-4">
-          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden p-2"
-               style="background:rgba(250,165,65,.1);border:1px solid rgba(250,165,65,.3)">
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 p-3"
+               style="background:rgba(250,165,65,.15);border:1px solid rgba(250,165,65,.4)">
             <img src="assets/image18.svg" alt="Phone" class="w-full h-full object-contain"
+                 style="filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%)"
                  onerror="this.parentNode.innerHTML='📞'" />
           </div>
           <div>
@@ -705,11 +725,12 @@
           </div>
         </div>
 
-        <!-- Email — image20.svg -->
+        <!-- Email — image20.svg (fill=#000000 → golden filter) -->
         <div class="flex items-start gap-4">
-          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden p-2"
-               style="background:rgba(250,165,65,.1);border:1px solid rgba(250,165,65,.3)">
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 p-3"
+               style="background:rgba(250,165,65,.15);border:1px solid rgba(250,165,65,.4)">
             <img src="assets/image20.svg" alt="Email" class="w-full h-full object-contain"
+                 style="filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%)"
                  onerror="this.parentNode.innerHTML='✉️'" />
           </div>
           <div>
@@ -718,11 +739,12 @@
           </div>
         </div>
 
-        <!-- Address — image25.svg -->
+        <!-- Address — image25.svg (fill=#ffebdb cream — show on dark with golden filter) -->
         <div class="flex items-start gap-4">
-          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden p-2"
-               style="background:rgba(250,165,65,.1);border:1px solid rgba(250,165,65,.3)">
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 p-3"
+               style="background:rgba(250,165,65,.15);border:1px solid rgba(250,165,65,.4)">
             <img src="assets/image25.svg" alt="Location" class="w-full h-full object-contain"
+                 style="filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%)"
                  onerror="this.parentNode.innerHTML='📍'" />
           </div>
           <div>
@@ -733,9 +755,10 @@
           </div>
         </div>
 
-        <!-- Decorative strip — image22.svg -->
-        <div class="py-2 opacity-30 overflow-hidden rounded-lg" style="height:28px">
-          <img src="assets/image22.svg" alt="" class="w-full h-full object-contain" style="filter:sepia(1) saturate(5) hue-rotate(10deg)" />
+        <!-- Decorative strip — image22.svg (fill=#87041d dark red → golden filter) -->
+        <div class="overflow-hidden rounded-lg" style="height:32px;background:rgba(250,165,65,.06);border:1px solid rgba(250,165,65,.15)">
+          <img src="assets/image22.svg" alt="" class="w-full h-full object-contain"
+               style="filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%); opacity:.8" />
         </div>
 
         <!-- Contact product preview — image7.jpeg used in contact slide -->
@@ -794,25 +817,38 @@
           </p>
         </form>
 
-        <!-- image15.png and image16.png as additional contact visual icons -->
+        <!-- image15.png (avg_alpha=27, near-transparent black lines) + image16.png (avg_alpha=106)
+             Fix: white bg so semi-transparent black strokes become visible -->
         <div class="mt-6 grid grid-cols-2 gap-4">
           <div class="rounded-2xl p-4 flex flex-col items-center gap-2" style="background:var(--gray2);border:1px solid rgba(250,165,65,.15)">
-            <img src="assets/image15.png" alt="Call Us" class="w-12 h-12 object-contain" style="filter:sepia(1) saturate(5) hue-rotate(10deg)" />
+            <div style="background:#ffffff;border-radius:10px;padding:8px;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+              <img src="assets/image15.png" alt="Call Us" style="width:40px;height:40px;object-fit:contain" />
+            </div>
             <span class="text-xs font-semibold uppercase tracking-wider" style="color:rgba(255,255,255,.4)">Call Us Anytime</span>
-            <a href="tel:+8801730426711" class="text-sm font-bold" style="color:var(--golden)">+880 1730 426711</a>
+            <a href="tel:+8801730426711" class="text-sm font-bold text-center" style="color:var(--golden)">+880 1730 426711</a>
           </div>
           <div class="rounded-2xl p-4 flex flex-col items-center gap-2" style="background:var(--gray2);border:1px solid rgba(250,165,65,.15)">
-            <img src="assets/image16.png" alt="Email Us" class="w-12 h-12 object-contain" style="filter:sepia(1) saturate(5) hue-rotate(10deg)" />
+            <!-- image16.png (avg_alpha=106, semi-transparent) — white bg -->
+            <div style="background:#ffffff;border-radius:10px;padding:8px;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+              <img src="assets/image16.png" alt="Email Us" style="width:40px;height:40px;object-fit:contain" />
+            </div>
             <span class="text-xs font-semibold uppercase tracking-wider" style="color:rgba(255,255,255,.4)">Email Us</span>
-            <a href="mailto:aliul@makasiabd.com" class="text-sm font-bold break-all" style="color:var(--golden)">aliul@makasiabd.com</a>
+            <a href="mailto:aliul@makasiabd.com" class="text-sm font-bold break-all text-center" style="color:var(--golden)">aliul@makasiabd.com</a>
           </div>
         </div>
 
-        <!-- image17.png & image19.png as address / location decorations -->
+        <!-- image17.png (avg_alpha=24, nearly transparent text/label) + image19.png (location pin)
+             Fix: white bg for image17, golden filter for image19 -->
         <div class="mt-4 rounded-2xl p-4 flex items-center gap-4" style="background:var(--gray2);border:1px solid rgba(250,165,65,.15)">
-          <img src="assets/image19.png" alt="Location" class="w-10 h-10 object-contain flex-shrink-0" style="filter:sepia(1) saturate(5) hue-rotate(10deg)" />
+          <!-- image19.png: avg_alpha=164, has visible pixels — golden filter -->
+          <div style="background:rgba(250,165,65,.12);border-radius:8px;padding:6px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <img src="assets/image19.png" alt="Location" style="width:36px;height:36px;object-fit:contain;filter:brightness(0) saturate(100%) invert(67%) sepia(68%) saturate(800%) hue-rotate(342deg) brightness(103%)" />
+          </div>
           <div>
-            <img src="assets/image17.png" alt="Address label" class="h-4 object-contain mb-1 opacity-60" style="filter:invert(1) sepia(1) saturate(3) hue-rotate(10deg)" />
+            <!-- image17.png: avg_alpha=24 nearly transparent text — show on white pill -->
+            <div style="background:#ffffff;border-radius:6px;padding:3px 8px;display:inline-block;margin-bottom:4px">
+              <img src="assets/image17.png" alt="Address" style="height:14px;object-contain;display:block" />
+            </div>
             <p class="text-sm" style="color:rgba(255,255,255,.5)">House-05, Badaldi Main Road, Turag, Uttara, Dhaka-1230, Bangladesh</p>
           </div>
         </div>
